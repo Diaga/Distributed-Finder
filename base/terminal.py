@@ -1,17 +1,30 @@
+from db.dao.directory_dao import DirectoryDao
+from db.dao.session_dao import SessionDao
+from db.models.session import Session
+
+
 class BaseTerminal:
     """Handles the user input and handles matching commands"""
+
+    class Context:
+        """Holds the context for finder terminal"""
+
+        def __init__(self):
+            self.current_directory = DirectoryDao.get_root_directory()
 
     def __init__(self, commands=None, prefix='finder %'):
         if commands is None:
             # Default argument should not be mutable
             commands = []
 
+        self.context = BaseTerminal.Context()
         self.prefix = prefix + ' '
-        self.commands = commands
+        self.commands = []
 
-        for command in self.commands:
-            command.log = self.log
-            command.get_input = self.get_input
+        for command in commands:
+            self.commands.append(command(
+                context=self.context, log=self.log, get_input=self.get_input
+            ))
 
     def log(self, message, prefix=True):
         """Prints message to console with specified prefix"""
@@ -26,11 +39,16 @@ class BaseTerminal:
             self.log(f'{self.prefix} {prompt}')
         return input(f'{self.prefix} ')
 
-    def run(self, welcome_message=None):
+    def run(self):
         """Runs the terminal in loop"""
 
-        if welcome_message is not None:
-            self.log(welcome_message, prefix=False)
+        latest_session = SessionDao.get_last_session()
+        if latest_session is None:
+            self.log('Welcome to Distributed Finder!', prefix=False)
+        else:
+            self.log(latest_session, prefix=False)
+
+        SessionDao.create_session(Session())
 
         while True:
             user_input = self.get_input()

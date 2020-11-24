@@ -9,6 +9,11 @@ class BaseCommand(ABC):
     command = None
     arguments = []
 
+    def __init__(self, context, log, get_input):
+        self.context = context
+        self.log = log
+        self.get_input = get_input
+
     def __len__(self):
         """Returns required length of the command"""
         length = 1  # Length must at least be 1

@@ -38,6 +38,7 @@ class BaseArgument(ABC):
 
 
 class IntArgument(BaseArgument):
+    """Parses the argument as an integer"""
 
     def _parse(self, user_input, options=None):
         self._data = int(user_input)
@@ -49,3 +50,10 @@ class IntArgument(BaseArgument):
 
         super(IntArgument, self).validate(user_input=user_input,
                                           options=options)
+
+
+class StringArgument(BaseArgument):
+    """Parses the argument as a result"""
+
+    def _parse(self, user_input, options=None):
+        self._data = user_input
