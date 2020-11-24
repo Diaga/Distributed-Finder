@@ -1,11 +1,24 @@
+import os
+
 from base.terminal import BaseTerminal
-from commands.ping.command import PingCommand
+
+from commands.ping import PingCommand
+from commands.cd import CDCommand
+from commands.ls import LSCommand
+from commands.mkdir import MkDirCommand
+
+from db.db import DB
 
 
 def main():
-    """Start Finder Terminal"""
-    terminal = BaseTerminal(commands=[PingCommand()])
-    terminal.run(welcome_message='Last login at X')
+    """Start Finder Terminal and create connection to DB"""
+    db = DB()
+    db.connect(os.path.join(os.getcwd(), 'finder.db'))
+
+    terminal = BaseTerminal(commands=[
+        PingCommand, CDCommand, MkDirCommand, LSCommand
+    ])
+    terminal.run()
 
 
 if __name__ == '__main__':
