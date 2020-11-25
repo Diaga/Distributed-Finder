@@ -1,5 +1,6 @@
 from db.db import DB
 from db.models.file import File
+import re
 
 
 class FileDao:
@@ -13,7 +14,7 @@ class FileDao:
         """
         file_db = DB().session.add(file)
         if commit:
-            DB().session.add(file_db)
+            DB().session.commit()
 
         return file_db
 
@@ -28,7 +29,7 @@ class FileDao:
             DB().session.commit()
 
     @staticmethod
-    def get_files_from_current_directories(current_directory):
+    def get_files_from_current_directory(current_directory):
         """Return all files with in the current directory
         :param current_directory: Directory model object
         specifying current directory
@@ -36,3 +37,30 @@ class FileDao:
         return DB().session.query(File).filter_by(
             directory_id=current_directory.id
         ).all()
+
+    @staticmethod
+    def is_unique_filename(filename, current_directory):
+        """Returns true if file is unique within the
+        directory
+        :param current_directory: Directory model object
+         specifying current directory
+        :param filename: String specifying filename to be
+        validated
+        """
+        directory_files = FileDao.get_files_from_current_directory(
+            current_directory)
+
+        for file in directory_files:
+            if (file.name == filename):
+                return False
+        return True
+
+    @staticmethod
+    def is_valid_filename(filename):
+        """Returns true if filename does not start with
+         a special char and does not contain . \\ /
+        :param filename: String specifying filename
+        to be validated
+        """
+        return not (bool(re.search(
+            r'^[@!#$%^&+-=\.\/\\\*]|([\\\/\.]+)', filename)))
