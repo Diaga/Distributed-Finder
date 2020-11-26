@@ -25,4 +25,4 @@ class TouchCommand(BaseCommand):
         else:
             raise ValueError('file name should not start with ' +
                              'a special character and should not' +
-                             ' contain \\ / . characters')
+                             ' contain \\ / characters')

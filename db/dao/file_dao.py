@@ -64,12 +64,12 @@ class FileDao:
     @staticmethod
     def is_valid_filename(filename):
         """Returns true if filename does not start with
-         a special char and does not contain . \\ /
+         a special char and does not contain \\ /
         :param filename: String specifying filename
         to be validated
         """
         return not (bool(re.search(
-            r'^[@!#$%^&+-=\.\/\\\*]|([\\\/\.]+)', filename)))
+            r'^[@!#$%^&+-=\.\/\\\*]|([\\\/]+)', filename)))
 
     @staticmethod
     def get_highest_order_of_sectors(file):
