@@ -3,16 +3,19 @@ from abc import ABC
 
 class BaseArgument(ABC):
 
-    def __init__(self, options=None):
+    def __init__(self, options=None, required=True):
         if options is None:
             options = []
 
         self._data = None
         self.options = options
+        self.required = required
         self.has_validated = False
 
     def __len__(self):
-        return 1 + len(self.options)
+        if self.required:
+            return 1 + len(self.options)
+        return 0
 
     def _parse(self, user_input, options=None):
         pass
