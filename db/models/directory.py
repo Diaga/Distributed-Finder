@@ -18,8 +18,8 @@ class Directory(Base):
 
     directory_id = Column(String, ForeignKey('directory.id',
                                              ondelete='CASCADE'))
-    directory = relationship('Directory',
-                             foreign_keys='Directory.directory_id')
+    directory = relationship('Directory', backref='directories',
+                             remote_side=[id])
     files = relationship('File', backref='directory')
 
     def __repr__(self):
