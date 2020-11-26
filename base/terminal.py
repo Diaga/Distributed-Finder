@@ -14,13 +14,44 @@ class BaseTerminal:
         def __init__(self):
             self.current_directory = DirectoryDao.get_root_directory()
 
-    def __init__(self, commands=None, prefix='finder %'):
+        def parse_dir(self, path):
+            """Parses path to a directory object
+            :param path: Path to parse"""
+            current_directory = self.current_directory
+
+            split_path = path.split('/')
+
+            # Check if user started the path from root
+            if split_path[0] == '':
+                current_directory = DirectoryDao.get_root_directory()
+                split_path.pop(0)
+
+            for level in split_path:
+                if level == '..':
+                    if current_directory.id != \
+                            DirectoryDao.get_root_directory().id:
+                        current_directory = current_directory.directory
+                elif level == '.':
+                    pass
+                else:
+                    directory = DirectoryDao.\
+                        get_directory_from_current_directory(
+                            current_directory, level
+                        )
+                    if directory is None:
+                        raise ValueError('No such directory exists!')
+
+                    current_directory = directory
+
+            return current_directory
+
+    def __init__(self, commands=None, prefix='finder'):
         if commands is None:
             # Default argument should not be mutable
             commands = []
 
         self.context = BaseTerminal.Context()
-        self.prefix = prefix + ' '
+        self.prefix = prefix
         self.commands = []
 
         for command in commands:
@@ -31,18 +62,20 @@ class BaseTerminal:
     def log(self, message, prefix=True):
         """Prints message to console with specified prefix"""
         if prefix:
-            print(f'{self.prefix} {message}')
+            print(f'{self.prefix}'
+                  f' {self.context.current_directory} % {message}')
         else:
             print(message)
 
     def get_input(self, prompt=None, prefix=True):
         """Wrapper around input() to have a terminal like appearance"""
-        if prefix:
-            if prompt is not None:
-                self.log(f'{self.prefix} {prompt}')
+        if prompt is not None:
+            self.log(f'{self.prefix}'
+                     f' {self.context.current_directory} % {prompt}')
 
+        if prefix:
             return input(f'{self.prefix} ')
-        return input(f'{prompt}')
+        return input()
 
     def run(self):
         """Runs the terminal in loop"""
@@ -66,8 +99,11 @@ class BaseTerminal:
                 arguments = user_input_list[1:]
                 for command in self.commands:
                     if command.match(command_input):
-                        command.validate(arguments)
-                        command.run()
+                        try:
+                            command.validate(arguments)
+                            command.run()
+                        except ValueError as e:
+                            self.log(e, prefix=False)
                         break
                 else:
                     self.log(f'terminal: command not found:'
