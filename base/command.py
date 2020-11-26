@@ -22,12 +22,13 @@ class BaseCommand(ABC):
 
         return length
 
-    @staticmethod
-    def _check_input_length(arguments):
+    def _check_input_length(self, arguments):
         length = 1
-        for argument in arguments:
-            if argument[0] != '-':
-                length += 1
+
+        for index, argument in zip(range(len(arguments)), arguments):
+            if self.arguments[index].required:
+                if argument[0] != '-':
+                    length += 1
 
         return length
 
