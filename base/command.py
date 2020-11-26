@@ -25,9 +25,12 @@ class BaseCommand(ABC):
     def _check_input_length(self, arguments):
         length = 1
 
-        for index, argument in zip(range(len(arguments)), arguments):
-            if self.arguments[index].required:
-                if argument[0] != '-':
+        for counter in range(len(arguments)):
+            if arguments[counter][0] != '-' or counter < 1:
+                if counter < len(self.arguments):
+                    if self.arguments[counter].required:
+                        length += 1
+                else:
                     length += 1
 
         return length
@@ -46,8 +49,15 @@ class BaseCommand(ABC):
         if self._check_input_length(arguments) != len(self):
             raise ValueError('Arguments length do not match!')
 
-        for user_argument, argument in zip(arguments, self.arguments):
-            argument.validate(user_argument)
+        counter = 0
+        while counter != len(arguments):
+            options = []
+            for index in range(counter + 1, len(arguments)):
+                if arguments[index][0] == '-' and counter < 2:
+                    options.append(arguments[index])
+
+            self.arguments[counter].validate(arguments[counter], options)
+            counter += 1 + len(options)
 
     def run(self):
         pass

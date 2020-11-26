@@ -95,7 +95,7 @@ class BaseTerminal:
 
         while True:
             user_input = self.get_input()
-            user_input_list = user_input.split(' ')
+            user_input_list = user_input.strip().split(' ')
             if len(user_input_list) >= 1:
                 command_input = user_input_list[0]
                 arguments = user_input_list[1:]
