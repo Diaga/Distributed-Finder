@@ -8,4 +8,7 @@ class CDCommand(BaseCommand):
     arguments = [StringArgument()]
 
     def run(self):
-        pass
+        path = self.arguments[0].data
+
+        parsed_directory = self.context.parse_dir(path)
+        self.context.current_directory = parsed_directory
