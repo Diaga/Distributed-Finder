@@ -50,8 +50,6 @@ class BaseTerminal:
         latest_session = SessionDao.get_last_session()
         if latest_session is None:
             self.log('Welcome to Distributed Finder!', prefix=False)
-            # make the sector divisions
-            # should NOT be here
             SectorDao.create_sectors_division(
                 total_size(), sector_size())
 

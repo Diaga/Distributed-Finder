@@ -21,11 +21,8 @@ class TouchCommand(BaseCommand):
                 )
                 FileDao.create_file(file)
             else:
-                self.log('InvalidEntry: File already exists', prefix=False)
-                # raise ValueError('File already exists')
+                raise ValueError('File already exists')
         else:
-            self.log(
-                'InvalidEntry: File starts with a ' +
-                'special character and/or contains \\, /, .', prefix=False)
-            # raise ValueError('file name should not start with
-            # a special character and should not contain \ / . characters')
+            raise ValueError('file name should not start with ' +
+                             'a special character and should not' +
+                             ' contain \\ / . characters')

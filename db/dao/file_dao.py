@@ -1,4 +1,3 @@
-from db.dao.sector_dao import SectorDao
 from db.db import DB
 from db.models.file import File
 import re
@@ -30,7 +29,7 @@ class FileDao:
             DB().session.commit()
 
     @staticmethod
-    def get_file(filename, current_directory):
+    def get_file_from_current_directory(filename, current_directory):
         return DB().session.query(File).filter_by(
             directory_id=current_directory.id,
             name=filename).first()
@@ -73,7 +72,8 @@ class FileDao:
             r'^[@!#$%^&+-=\.\/\\\*]|([\\\/\.]+)', filename)))
 
     @staticmethod
-    def is_empty_file(file):
-        if len(SectorDao.get_sectors_linked_to_file(file)) == 0:
-            return True
-        return False
+    def get_highest_order_of_sectors(file):
+        if(file.is_empty):
+            return 0
+        sector_orders = map(lambda sector: sector.order, file.sectors)
+        return max(sector_orders)

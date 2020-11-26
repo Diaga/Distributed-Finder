@@ -19,5 +19,9 @@ class File(Base):
 
     sectors = relationship('Sector', backref='file')
 
+    @property
+    def is_empty(self):
+        return len(self.sectors) == 0
+
     def __repr__(self):
         return self.name

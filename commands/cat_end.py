@@ -13,37 +13,25 @@ class CatEndCommand(BaseCommand):
         filename = self.arguments[0].data
         current_directory = self.context.current_directory
 
-        if (FileDao.is_unique_filename(filename, current_directory)):
-            self.log('InvalidEntry: File does not exist', prefix=False)
-            # raise ValueError('File does not exist')
+        if (FileDao.is_unique_filename(filename, current_directory)
+                or not FileDao.is_valid_filename(filename)):
+            raise ValueError('InvalidEntry: File does not exist')
         else:
-            file = FileDao.get_file(filename, current_directory)
+            file = FileDao.get_file_from_current_directory(
+                filename, current_directory)
             text = self.get_input('Start Writing: ', prefix=False)
-            divs = [(text[i:i+sector_size()])
-                    for i in range(0, len(text), sector_size())]
+            divs = []
+            for cap in range(0, len(text), sector_size()):
+                divs.append(text[cap: cap + sector_size()])
+
+            order = FileDao.get_highest_order_of_sectors(file)
             for div in divs:
                 if (SectorDao.is_memory_full()):
                     raise MemoryError(
                         'Memory is full! ' +
                         'All available sectors used up!')
+                    break
+                order += 1
                 sector = SectorDao.get_first_unused_sector()
                 SectorDao.insert_sector_data(
-                    sector, div, True, file.id)
-
-            # Debugging
-            file_sectors = SectorDao.get_sectors_linked_to_file(file)
-            self.log(
-                f'The sectors of the file are {file_sectors}',
-                prefix=False)
-            print('The text in the file is:')
-            for sector in file_sectors:
-                print(sector.data, end='')
-            print()
-
-            """
-            sector3 = Sector(
-                data=bytes(json.dumps("st for fun"), 'utf8'),
-                file_id=file.id
-            )
-            SectorDao.create_sector(sector3)
-            """
+                    sector, div, order, True, file.id)
