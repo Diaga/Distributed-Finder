@@ -1,3 +1,5 @@
+from db.base import sector_size
+from db.dao.sector_dao import SectorDao
 from db.db import DB
 from db.models.file import File
 import re
@@ -17,6 +19,29 @@ class FileDao:
             DB().session.commit()
 
         return file_db
+
+    @staticmethod
+    def insert_data_in_file(file, data):
+        """inserts the data in the available sectors
+        :param file: File model object whose data is
+        to be stored
+        :param data: The data to insert
+        """
+        divs = []
+        for cap in range(0, len(data), sector_size()):
+            divs.append(data[cap: cap + sector_size()])
+
+        order = FileDao.get_highest_order_of_sectors(file)
+        for div in divs:
+            if SectorDao.is_memory_full():
+                raise MemoryError(
+                    'Memory is full! ' +
+                    'All available sectors used up!')
+
+            order += 1
+            sector = SectorDao.get_first_unused_sector()
+            SectorDao.insert_sector_data(
+                sector, div, order, True, file.id)
 
     @staticmethod
     def remove_data_in_file(file, commit=True):
