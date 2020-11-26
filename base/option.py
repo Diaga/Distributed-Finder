@@ -13,6 +13,9 @@ class Option(ABC):
     def validate(self, option):
         self.exists = option == self.option
 
+    def reset(self):
+        self.exists = False
+
     def __repr__(self):
         return self.option
 

@@ -29,10 +29,11 @@ class FileDao:
             DB().session.commit()
 
     @staticmethod
-    def get_file_from_current_directory(filename, current_directory):
+    def get_file_from_current_directory(current_directory, filename):
         return DB().session.query(File).filter_by(
             directory_id=current_directory.id,
-            name=filename).first()
+            name=filename
+        ).first()
 
     @staticmethod
     def get_files_from_current_directory(current_directory):

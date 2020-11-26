@@ -8,6 +8,7 @@ class BaseCommand(ABC):
 
     command = None
     arguments = []
+    options = []
 
     def __init__(self, context, log, get_input):
         self.context = context
@@ -26,9 +27,10 @@ class BaseCommand(ABC):
         length = 1
 
         for counter in range(len(arguments)):
-            if arguments[counter][0] != '-' or counter < 1:
+            if arguments[counter][0] != '-':
                 if counter < len(self.arguments):
-                    if self.arguments[counter].required:
+                    if counter < len(self.arguments) and\
+                            self.arguments[counter].required:
                         length += 1
                 else:
                     length += 1
@@ -50,14 +52,43 @@ class BaseCommand(ABC):
             raise ValueError('Arguments length do not match!')
 
         counter = 0
-        while counter != len(arguments):
-            options = []
-            for index in range(counter + 1, len(arguments)):
-                if arguments[index][0] == '-' and counter < 2:
-                    options.append(arguments[index])
+        user_counter = 0
+        argument_started = False
 
-            self.arguments[counter].validate(arguments[counter], options)
-            counter += 1 + len(options)
+        while user_counter != len(arguments):
+            options = []
+
+            if not argument_started:
+                if arguments[user_counter][0] == '-':
+                    for option in self.options:
+                        if not option.exists:
+                            option.validate(arguments[user_counter])
+                else:
+                    argument_started = True
+
+                    if user_counter != len([
+                        option for option in self.options if option.exists
+                    ]):
+                        raise ValueError('Command option does not exist!')
+
+            if argument_started:
+                for index in range(counter + 1, len(arguments)):
+                    if arguments[index][0] == '-' and counter < 2:
+                        options.append(arguments[index])
+
+                self.arguments[counter].validate(
+                    arguments[user_counter], options
+                )
+                counter += 1
+
+            user_counter += 1 + len(options)
+
+    def reset(self):
+        for argument in self.arguments:
+            argument.reset()
+
+        for option in self.options:
+            option.reset()
 
     def run(self):
         pass

@@ -18,7 +18,7 @@ class PingCommand(BaseCommand):
 
             for counter in range(1, times + 1):
                 if self.arguments[0].options[0].exists:
-                    self.log(f'{times + 1 - counter} Pong!', prefix=False)
+                    self.log(f'{times + 1 - counter}) Pong!', prefix=False)
                 else:
                     self.log(f'{counter}) Pong!', prefix=False)
         else:

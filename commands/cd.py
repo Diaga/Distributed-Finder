@@ -10,5 +10,5 @@ class CDCommand(BaseCommand):
     def run(self):
         path = self.arguments[0].data
 
-        parsed_directory = self.context.parse_dir(path)
+        parsed_directory = self.context.parse(path)
         self.context.current_directory = parsed_directory
