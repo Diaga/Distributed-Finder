@@ -7,3 +7,11 @@ Base = declarative_base()
 
 def uuid_str():
     return str(uuid4())
+
+
+def total_size():
+    return 200
+
+
+def sector_size():
+    return 10

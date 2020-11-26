@@ -29,6 +29,12 @@ class FileDao:
             DB().session.commit()
 
     @staticmethod
+    def get_file_from_current_directory(filename, current_directory):
+        return DB().session.query(File).filter_by(
+            directory_id=current_directory.id,
+            name=filename).first()
+
+    @staticmethod
     def get_files_from_current_directory(current_directory):
         """Return all files with in the current directory
         :param current_directory: Directory model object
@@ -64,3 +70,10 @@ class FileDao:
         """
         return not (bool(re.search(
             r'^[@!#$%^&+-=\.\/\\\*]|([\\\/\.]+)', filename)))
+
+    @staticmethod
+    def get_highest_order_of_sectors(file):
+        if(file.is_empty):
+            return 0
+        sector_orders = map(lambda sector: sector.order, file.sectors)
+        return max(sector_orders)
