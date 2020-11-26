@@ -69,6 +69,7 @@ class BaseTerminal:
 
     def get_input(self, prompt=None, prefix=True):
         """Wrapper around input() to have a terminal like appearance"""
+        # something wrong with this
         if prompt is not None:
             self.log(f'{self.prefix}'
                      f' {self.context.current_directory} % {prompt}')
