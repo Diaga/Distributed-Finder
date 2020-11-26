@@ -57,7 +57,7 @@ class FileDao:
             current_directory)
 
         for file in directory_files:
-            if (file.name == filename):
+            if file.name == filename:
                 return False
         return True
 
@@ -73,7 +73,7 @@ class FileDao:
 
     @staticmethod
     def get_highest_order_of_sectors(file):
-        if(file.is_empty):
+        if file.is_empty:
             return 0
         sector_orders = map(lambda sector: sector.order, file.sectors)
         return max(sector_orders)
