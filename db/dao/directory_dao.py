@@ -1,5 +1,6 @@
 from db.db import DB
 from db.models.directory import Directory
+import re
 
 
 class DirectoryDao:
@@ -65,3 +66,30 @@ class DirectoryDao:
         return DB().session.query(Directory).filter_by(
             directory_id=current_directory.id, name=directory_name
         ).first()
+
+    @staticmethod
+    def is_valid_dirname(dirname):
+        """Returns true if directory name does not start
+        with a special char and does not contain . \\ /
+        :param dirname: String specifying name of the
+        directory to be validated
+        """
+        return not (bool(re.search(
+            r'^[@!#$%^&+-=\.\/\\\*]|([\\\/\.]+)', dirname)))
+
+    @staticmethod
+    def is_unique_direname(dirname, current_directory):
+        """Returns true if directory is unique within the
+        directory
+        :param current_directory: Directory model object
+         specifying current directory
+        :param filename: String specifying filename to be
+        validated
+        """
+        directories = DirectoryDao.get_directories_from_current_directory(
+            current_directory)
+
+        for directory in directories:
+            if directory.name == dirname:
+                return False
+        return True
