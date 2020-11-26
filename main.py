@@ -9,6 +9,7 @@ from commands.mkdir import MkDirCommand
 from commands.touch import TouchCommand
 from commands.cat_end import CatEndCommand
 from commands.rm import RmCommand
+from commands.mv import MvCommand
 
 from db.db import DB
 
@@ -20,7 +21,7 @@ def main():
 
     terminal = BaseTerminal(commands=[
         PingCommand, CDCommand, MkDirCommand, LSCommand,
-        TouchCommand, CatEndCommand, RmCommand
+        TouchCommand, CatEndCommand, RmCommand, MvCommand
     ])
     terminal.run()
 

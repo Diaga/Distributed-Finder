@@ -31,7 +31,9 @@ class BaseTerminal:
                 split_path.pop(0)
 
             for level in split_path:
-                if level == split_path[-1] and is_file:
+                if level == '':
+                    continue
+                elif level == split_path[-1] and is_file:
                     file = FileDao.get_file_from_current_directory(
                         current_directory, level
                     )
