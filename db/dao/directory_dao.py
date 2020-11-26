@@ -53,3 +53,15 @@ class DirectoryDao:
         return DB().session.query(Directory).filter_by(
             directory_id=current_directory.id
         ).all()
+
+    @staticmethod
+    def get_directory_from_current_directory(current_directory,
+                                             directory_name):
+        """Returns directory model object from current directory
+         with directory_name
+        :param current_directory: Current directory to search for
+        :param directory_name: Directory name to search for
+        """
+        return DB().session.query(Directory).filter_by(
+            directory_id=current_directory.id, name=directory_name
+        ).first()
