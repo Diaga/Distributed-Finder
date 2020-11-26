@@ -19,11 +19,28 @@ class FileDao:
         return file_db
 
     @staticmethod
+    def remove_data_in_file(file, commit=True):
+        """Removes the data in the sectors of the file
+        :param file: File model object whose data is
+        to be removed
+        :param commit: Specifies whether to commit
+        to database
+        """
+        for sector in file.sectors:
+            sector.data = None
+            sector.order = 0
+            sector.is_used = False
+            sector.file_id = None
+        if commit:
+            DB().session.commit()
+
+    @staticmethod
     def delete_file(file, commit=True):
         """Deletes an existing file record from the database
         :param file: File model object to be deleted
         :param commit: Specifies whether to commit to database
         """
+        FileDao.remove_data_in_file(file)
         DB().session.delete(file)
         if commit:
             DB().session.commit()
