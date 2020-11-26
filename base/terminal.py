@@ -59,22 +59,24 @@ class BaseTerminal:
                 context=self.context, log=self.log, get_input=self.get_input
             ))
 
+    @property
+    def get_prefix(self):
+        return f'{self.prefix} {self.context.current_directory} %'
+
     def log(self, message, prefix=True):
         """Prints message to console with specified prefix"""
         if prefix:
-            print(f'{self.prefix}'
-                  f' {self.context.current_directory} % {message}')
+            print(f'{self.get_prefix} {message}')
         else:
             print(message)
 
     def get_input(self, prompt=None, prefix=True):
         """Wrapper around input() to have a terminal like appearance"""
         if prompt is not None:
-            self.log(f'{self.prefix}'
-                     f' {self.context.current_directory} % {prompt}')
+            self.log(prompt, prefix=prefix)
 
         if prefix:
-            return input(f'{self.prefix} ')
+            return input(f'{self.get_prefix} ')
         return input()
 
     def run(self):
