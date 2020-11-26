@@ -7,6 +7,7 @@ from commands.cd import CDCommand
 from commands.ls import LSCommand
 from commands.mkdir import MkDirCommand
 from commands.touch import TouchCommand
+from commands.cat_end import CatEndCommand
 
 from db.db import DB
 
@@ -17,7 +18,8 @@ def main():
     db.connect(os.path.join(os.getcwd(), 'finder.db'))
 
     terminal = BaseTerminal(commands=[
-        PingCommand, CDCommand, MkDirCommand, LSCommand, TouchCommand
+        PingCommand, CDCommand, MkDirCommand, LSCommand,
+        TouchCommand, CatEndCommand
     ])
     terminal.run()
 

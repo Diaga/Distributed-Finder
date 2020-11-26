@@ -1,6 +1,8 @@
+from db.dao.sector_dao import SectorDao
 from db.dao.directory_dao import DirectoryDao
 from db.dao.session_dao import SessionDao
 from db.models.session import Session
+from db.base import sector_size, total_size
 
 
 class BaseTerminal:
@@ -33,11 +35,14 @@ class BaseTerminal:
         else:
             print(message)
 
-    def get_input(self, prompt=None):
+    def get_input(self, prompt=None, prefix=True):
         """Wrapper around input() to have a terminal like appearance"""
-        if prompt is not None:
-            self.log(f'{self.prefix} {prompt}')
-        return input(f'{self.prefix} ')
+        if prefix:
+            if prompt is not None:
+                self.log(f'{self.prefix} {prompt}')
+
+            return input(f'{self.prefix} ')
+        return input(f'{prompt}')
 
     def run(self):
         """Runs the terminal in loop"""
@@ -45,6 +50,11 @@ class BaseTerminal:
         latest_session = SessionDao.get_last_session()
         if latest_session is None:
             self.log('Welcome to Distributed Finder!', prefix=False)
+            # make the sector divisions
+            # should NOT be here
+            SectorDao.create_sectors_division(
+                total_size(), sector_size())
+
         else:
             self.log(latest_session, prefix=False)
 
