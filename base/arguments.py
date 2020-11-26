@@ -14,17 +14,23 @@ class BaseArgument(ABC):
 
     def __len__(self):
         if self.required:
-            return 1 + len(self.options)
+            return 1
         return 0
 
     def _parse(self, user_input, options=None):
         pass
 
     def _validate(self, user_input, options=None):
-        if options is not None:
+        if options:
             for user_option in options:
                 for option in self.options:
-                    option.validate(user_option)
+                    if not option.exists:
+                        option.validate(user_option)
+
+            if len(options) != len([
+                option for option in self.options if option.exists
+            ]):
+                raise ValueError('Option does not exists!')
 
         self._parse(user_input, options=options)
         self.has_validated = True
