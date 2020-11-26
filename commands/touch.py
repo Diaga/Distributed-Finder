@@ -13,8 +13,8 @@ class TouchCommand(BaseCommand):
         filename = self.arguments[0].data
         current_directory = self.context.current_directory
 
-        if (FileDao.is_valid_filename(filename)):
-            if (FileDao.is_unique_filename(filename, current_directory)):
+        if FileDao.is_valid_filename(filename):
+            if FileDao.is_unique_filename(filename, current_directory):
                 file = File(
                     name=filename,
                     directory_id=current_directory.id
