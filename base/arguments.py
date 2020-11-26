@@ -45,6 +45,13 @@ class BaseArgument(ABC):
     def validate(self, user_input, options=None):
         self._validate(user_input, options=options)
 
+    def reset(self):
+        self.has_validated = False
+        self._data = None
+
+        for option in self.options:
+            option.reset()
+
 
 class IntArgument(BaseArgument):
     """Parses the argument as an integer"""
@@ -66,3 +73,23 @@ class StringArgument(BaseArgument):
 
     def _parse(self, user_input, options=None):
         self._data = user_input
+
+
+class StaticArgument(BaseArgument):
+
+    def __init__(self, arguments, options=None, required=False):
+        super(StaticArgument, self).__init__(options=options,
+                                             required=required)
+
+        self.arguments = arguments
+
+    def _parse(self, user_input, options=None):
+        self._data = user_input
+
+    def validate(self, user_input, options=None):
+        validation = user_input in self.arguments
+        if not validation:
+            raise ValueError(f'Argument must be one of: {self.arguments}')
+
+        super(StaticArgument, self).validate(user_input=user_input,
+                                             options=options)

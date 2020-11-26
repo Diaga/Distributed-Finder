@@ -18,7 +18,7 @@ class CatEndCommand(BaseCommand):
             raise ValueError('InvalidEntry: File does not exist')
         else:
             file = FileDao.get_file_from_current_directory(
-                filename, current_directory)
+                current_directory, filename)
             text = self.get_input('Start Writing: ', prefix=False)
             divs = []
             for cap in range(0, len(text), sector_size()):
@@ -26,11 +26,11 @@ class CatEndCommand(BaseCommand):
 
             order = FileDao.get_highest_order_of_sectors(file)
             for div in divs:
-                if (SectorDao.is_memory_full()):
+                if SectorDao.is_memory_full():
                     raise MemoryError(
                         'Memory is full! ' +
                         'All available sectors used up!')
-                    break
+
                 order += 1
                 sector = SectorDao.get_first_unused_sector()
                 SectorDao.insert_sector_data(

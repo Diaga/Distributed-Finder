@@ -1,6 +1,8 @@
 from db.dao.sector_dao import SectorDao
 from db.dao.directory_dao import DirectoryDao
 from db.dao.session_dao import SessionDao
+from db.dao.file_dao import FileDao
+
 from db.models.session import Session
 from db.base import sector_size, total_size
 
@@ -14,9 +16,11 @@ class BaseTerminal:
         def __init__(self):
             self.current_directory = DirectoryDao.get_root_directory()
 
-        def parse_dir(self, path):
+        def parse(self, path, is_file=False):
             """Parses path to a directory object
-            :param path: Path to parse"""
+            :param path: Path to parse
+            :param is_file: Specifies if we are looking for a file or
+             directory"""
             current_directory = self.current_directory
 
             split_path = path.split('/')
@@ -27,7 +31,15 @@ class BaseTerminal:
                 split_path.pop(0)
 
             for level in split_path:
-                if level == '..':
+                if level == split_path[-1] and is_file:
+                    file = FileDao.get_file_from_current_directory(
+                        current_directory, level
+                    )
+                    if file is None:
+                        raise ValueError('No such file exists!')
+
+                    return file
+                elif level == '..':
                     if current_directory.id != \
                             DirectoryDao.get_root_directory().id:
                         current_directory = current_directory.directory
@@ -106,6 +118,8 @@ class BaseTerminal:
                             command.run()
                         except ValueError as e:
                             self.log(e, prefix=False)
+                        finally:
+                            command.reset()
                         break
                 else:
                     self.log(f'terminal: command not found:'
