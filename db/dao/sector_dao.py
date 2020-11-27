@@ -37,7 +37,8 @@ class SectorDao:
         ).first()
 
     @staticmethod
-    def insert_sector_data(sector, data, order, is_used, file_id):
+    def insert_sector_data(sector, data=None, order=0,
+                           is_used=False, file_id=None):
         """ Inserts the values in an already created sector
         record
         :param sector: Sector object model to be manipulated
