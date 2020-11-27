@@ -58,6 +58,7 @@ class BaseTerminal:
                     current_directory = directory
 
             return current_directory
+        
 
     def __init__(self, commands=None, prefix='finder'):
         if commands is None:
