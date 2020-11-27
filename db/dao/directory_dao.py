@@ -68,17 +68,6 @@ class DirectoryDao:
         ).first()
 
     @staticmethod
-    def get_directory_from_directory_id(directory_id):
-        """Returns directory model object of the
-        directory_id
-        :param directory_id: The id of the required
-        directory
-        """
-        return DB().session.query(Directory).get(
-            directory_id
-        )
-
-    @staticmethod
     def is_valid_dirname(dirname):
         """Returns true if directory name does not start
         with a special char and does not contain . \\ /

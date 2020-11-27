@@ -21,17 +21,18 @@ class FileDao:
         return file_db
 
     @staticmethod
-    def insert_data_in_file(file, data):
+    def insert_data_in_file(file, data, order=None):
         """inserts the data in the available sectors
         :param file: File model object whose data is
         to be stored
         :param data: The data to insert
+        :param order: The preceding order number
         """
         divs = []
         for cap in range(0, len(data), sector_size()):
             divs.append(data[cap: cap + sector_size()])
-
-        order = FileDao.get_highest_order_of_sectors(file)
+        if order is None:
+            order = FileDao.get_highest_order_of_sectors(file)
         for div in divs:
             if SectorDao.is_memory_full():
                 raise MemoryError(
@@ -120,3 +121,10 @@ class FileDao:
             return 0
         sector_orders = map(lambda sector: sector.order, file.sectors)
         return max(sector_orders)
+
+    @staticmethod
+    def get_file_size(file):
+        if file.is_empty:
+            return 0
+        sector_orders = map(lambda sector: len(sector.data), file.sectors)
+        return sum(sector_orders)
