@@ -43,6 +43,7 @@ class FileDao:
             sector = SectorDao.get_first_unused_sector()
             SectorDao.insert_sector_data(
                 sector, div, order, True, file.id)
+        return order
 
     @staticmethod
     def remove_data_in_file(file, commit=True):
