@@ -8,6 +8,8 @@ from commands.ls import LSCommand
 from commands.mkdir import MkDirCommand
 from commands.touch import TouchCommand
 from commands.cat_end import CatEndCommand
+from commands.cat import CatCommand
+from commands.cat_at import CatAtCommand
 from commands.rm import RmCommand
 from commands.mv import MvCommand
 from commands.pwd import PWDcommand
@@ -21,9 +23,8 @@ def main():
     db.connect(os.path.join(os.getcwd(), 'finder.db'))
 
     terminal = BaseTerminal(commands=[
-        PingCommand, CDCommand, MkDirCommand, LSCommand,
-        TouchCommand, CatEndCommand, RmCommand, MvCommand, PWDcommand
-    ])
+        PingCommand, CDCommand, MkDirCommand, LSCommand, PWDcommand, TouchCommand, CatEndCommand, CatCommand,
+        CatAtCommand, RmCommand, MvCommand])
     terminal.run()
 
 

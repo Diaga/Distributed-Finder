@@ -1,3 +1,5 @@
+from db.base import sector_size
+from db.dao.sector_dao import SectorDao
 from db.db import DB
 from db.models.file import File
 import re
@@ -19,11 +21,53 @@ class FileDao:
         return file_db
 
     @staticmethod
+    def insert_data_in_file(file, data, order=None):
+        """inserts the data in the available sectors
+        :param file: File model object whose data is
+        to be stored
+        :param data: The data to insert
+        :param order: The preceding order number
+        """
+        divs = []
+        for cap in range(0, len(data), sector_size()):
+            divs.append(data[cap: cap + sector_size()])
+        if order is None:
+            order = FileDao.get_highest_order_of_sectors(file)
+        for div in divs:
+            if SectorDao.is_memory_full():
+                raise MemoryError(
+                    'Memory is full! ' +
+                    'All available sectors used up!')
+
+            order += 1
+            sector = SectorDao.get_first_unused_sector()
+            SectorDao.insert_sector_data(
+                sector, div, order, True, file.id)
+        return order
+
+    @staticmethod
+    def remove_data_in_file(file, commit=True):
+        """Removes the data in the sectors of the file
+        :param file: File model object whose data is
+        to be removed
+        :param commit: Specifies whether to commit
+        to database
+        """
+        for sector in file.sectors:
+            sector.data = None
+            sector.order = 0
+            sector.is_used = False
+            sector.file_id = None
+        if commit:
+            DB().session.commit()
+
+    @staticmethod
     def delete_file(file, commit=True):
         """Deletes an existing file record from the database
         :param file: File model object to be deleted
         :param commit: Specifies whether to commit to database
         """
+        FileDao.remove_data_in_file(file)
         DB().session.delete(file)
         if commit:
             DB().session.commit()
@@ -78,3 +122,10 @@ class FileDao:
             return 0
         sector_orders = map(lambda sector: sector.order, file.sectors)
         return max(sector_orders)
+
+    @staticmethod
+    def get_file_size(file):
+        if file.is_empty:
+            return 0
+        sector_orders = map(lambda sector: len(sector.data), file.sectors)
+        return sum(sector_orders)
