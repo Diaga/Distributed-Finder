@@ -12,15 +12,10 @@ class PWDcommand(BaseCommand):
         restore = self.context.current_directory
 
         while (self.context.current_directory != root):
-            
+
             parent = self.context.current_directory.directory
             str_parent = str(parent)
             path = '/'+str_parent+path
             self.context.current_directory = parent
         self.context.current_directory = restore
         self.log(path)
-
-       
-    
-    
-    
