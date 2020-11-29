@@ -59,7 +59,6 @@ class BaseTerminal:
 
             return current_directory
 
-
     def __init__(self, commands=None, prefix='finder'):
         if commands is None:
             # Default argument should not be mutable

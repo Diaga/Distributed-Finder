@@ -23,7 +23,8 @@ def main():
     db.connect(os.path.join(os.getcwd(), 'finder.db'))
 
     terminal = BaseTerminal(commands=[
-        PingCommand, CDCommand, MkDirCommand, LSCommand, PWDcommand, TouchCommand, CatEndCommand, CatCommand,
+        PingCommand, CDCommand, MkDirCommand, LSCommand, PWDcommand, 
+        TouchCommand, CatEndCommand, CatCommand,
         CatAtCommand, RmCommand, MvCommand])
     terminal.run()
 

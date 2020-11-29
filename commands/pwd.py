@@ -4,7 +4,8 @@ from db.dao.directory_dao import DirectoryDao
 
 class PWDcommand(BaseCommand):
 
-    command='pwd'
+    command = 'pwd'
+
     def run(self):
         current = str(self.context.current_directory)
         path = '/'+current
