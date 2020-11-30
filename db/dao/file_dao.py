@@ -42,7 +42,7 @@ class FileDao:
             order += 1
             sector = SectorDao.get_first_unused_sector()
             SectorDao.insert_sector_data(
-                sector, div, order, True, file.id)
+                sector, div, order, file.id)
         return order
 
     @staticmethod
@@ -56,7 +56,6 @@ class FileDao:
         for sector in file.sectors:
             sector.data = None
             sector.order = 0
-            sector.is_used = False
             sector.file_id = None
         if commit:
             DB().session.commit()

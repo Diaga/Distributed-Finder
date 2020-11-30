@@ -10,6 +10,8 @@ class CatCommand(BaseCommand):
     options = [StringOption('-w')]
 
     def read_From_file(self, file):
+        if file.is_empty:
+            raise ValueError('File is empty! No contents to show')
         file_sectors = file.sectors
         file_sectors.sort(key=lambda sector: sector.order)
         content = ''
