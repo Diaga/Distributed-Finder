@@ -1,4 +1,4 @@
-from db.base import sector_size
+from db.base import SECTOR_SIZE
 from db.dao.sector_dao import SectorDao
 from db.db import DB
 from db.models.file import File
@@ -29,8 +29,8 @@ class FileDao:
         :param order: The preceding order number
         """
         divs = []
-        for cap in range(0, len(data), sector_size()):
-            divs.append(data[cap: cap + sector_size()])
+        for cap in range(0, len(data), SECTOR_SIZE):
+            divs.append(data[cap: cap + SECTOR_SIZE])
         if order is None:
             order = FileDao.get_highest_order_of_sectors(file)
         for div in divs:
