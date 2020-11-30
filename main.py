@@ -12,6 +12,7 @@ from commands.cat import CatCommand
 from commands.cat_at import CatAtCommand
 from commands.rm import RmCommand
 from commands.mv import MvCommand
+from commands.pwd import PWDcommand
 
 from db.db import DB
 
@@ -22,10 +23,9 @@ def main():
     db.connect(os.path.join(os.getcwd(), 'finder.db'))
 
     terminal = BaseTerminal(commands=[
-        PingCommand, CDCommand, MkDirCommand, LSCommand,
+        PingCommand, CDCommand, MkDirCommand, LSCommand, PWDcommand,
         TouchCommand, CatEndCommand, CatCommand,
-        CatAtCommand, RmCommand, MvCommand
-    ])
+        CatAtCommand, RmCommand, MvCommand])
     terminal.run()
 
 
