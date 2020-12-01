@@ -20,7 +20,7 @@ class BaseTerminal:
             """Parses path to a directory object
             :param path: Path to parse
             :param is_file: Specifies if we are looking for a file or
-             directory"""
+            directory"""
             current_directory = self.current_directory
 
             split_path = path.split('/')
