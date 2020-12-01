@@ -6,6 +6,12 @@ from db.dao.file_dao import FileDao
 
 
 class TouchCommand(BaseCommand):
+    """Creates a new file, specified as an argument with the command.
+        Checks for the validity of the file name as well,
+        avoiding duplication in file/directory names.
+
+        Usage: touch <file_name> """
+
     command = 'touch'
     arguments = [StringArgument()]
 

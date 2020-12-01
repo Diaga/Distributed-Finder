@@ -3,6 +3,10 @@ from base.arguments import StringArgument
 
 
 class CDCommand(BaseCommand):
+    """Used to change the directory in which the user resides in,
+        to one of the constituents directories.
+
+        Usage: cd <directory_name>"""
 
     command = 'cd'
     arguments = [StringArgument()]

@@ -8,6 +8,15 @@ from db.db import DB
 
 
 class RmCommand(BaseCommand):
+    """Used to delete files and directories.
+        Simple 'rm' with a filename will remove that file.
+        Simple 'rm' with a directory name will raise an error.
+
+        If '-rf' option specified, it will delete the desired
+        directory along with all its constituent directories.
+
+        Usage: rm <file_name>
+        rm -rf <directory_name>"""
 
     command = 'rm'
     arguments = [StringArgument()]
