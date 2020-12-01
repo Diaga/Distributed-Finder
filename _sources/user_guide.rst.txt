@@ -22,3 +22,12 @@ Commands
    :maxdepth: 2
 
    commands
+
+
+Codebase
+--------
+
+.. toctree::
+   :maxdepth: 4
+
+   autodocs/modules

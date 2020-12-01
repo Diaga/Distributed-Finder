@@ -1,8 +1,6 @@
-commands package
-================
+Available Commands
+==================
 
-Submodules
-----------
 
 cat command
 -----------
