@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>db.dao package &#8212; Distributed Finder v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/flask.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
+   
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Distributed Finder v0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">db.dao package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="db-dao-package">
+<h1>db.dao package<a class="headerlink" href="#db-dao-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-db.dao.directory_dao">
+<span id="db-dao-directory-dao-module"></span><h2>db.dao.directory_dao module<a class="headerlink" href="#module-db.dao.directory_dao" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="db.dao.directory_dao.DirectoryDao">
+<em class="property">class </em><code class="sig-prename descclassname">db.dao.directory_dao.</code><code class="sig-name descname">DirectoryDao</code><a class="headerlink" href="#db.dao.directory_dao.DirectoryDao" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Data access object for Directory model</p>
+<dl class="py method">
+<dt id="db.dao.directory_dao.DirectoryDao.create_directory">
+<em class="property">static </em><code class="sig-name descname">create_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">directory</span></em>, <em class="sig-param"><span class="n">commit</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.directory_dao.DirectoryDao.create_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new directory record in database
+:param directory: Directory model object to be inserted
+:param commit: Specifies whether to commit to database</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.directory_dao.DirectoryDao.delete_directory">
+<em class="property">static </em><code class="sig-name descname">delete_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">directory</span></em>, <em class="sig-param"><span class="n">commit</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.directory_dao.DirectoryDao.delete_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes an existing directory record from the database
+:param directory: Directory model object to be deleted
+:param commit: Specifies whether to commit to database</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.directory_dao.DirectoryDao.get_directories_from_current_directory">
+<em class="property">static </em><code class="sig-name descname">get_directories_from_current_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">current_directory</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.directory_dao.DirectoryDao.get_directories_from_current_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all directories inside a current directory
+:param current_directory: Directory model object
+specifying current directory</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.directory_dao.DirectoryDao.get_directory_from_current_directory">
+<em class="property">static </em><code class="sig-name descname">get_directory_from_current_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">current_directory</span></em>, <em class="sig-param"><span class="n">directory_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.directory_dao.DirectoryDao.get_directory_from_current_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns directory model object from current directory
+with directory_name
+:param current_directory: Current directory to search for
+:param directory_name: Directory name to search for</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.directory_dao.DirectoryDao.get_root_directory">
+<em class="property">static </em><code class="sig-name descname">get_root_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.directory_dao.DirectoryDao.get_root_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns root directory, creates one if it does not exist</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.directory_dao.DirectoryDao.is_unique_direname">
+<em class="property">static </em><code class="sig-name descname">is_unique_direname</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dirname</span></em>, <em class="sig-param"><span class="n">current_directory</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.directory_dao.DirectoryDao.is_unique_direname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if directory is unique within the directory
+:param current_directory: Directory model object
+specifying current directory
+:param dirname: String specifying dirname to be
+validated</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.directory_dao.DirectoryDao.is_valid_dirname">
+<em class="property">static </em><code class="sig-name descname">is_valid_dirname</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dirname</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.directory_dao.DirectoryDao.is_valid_dirname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if directory name does not start
+with a special char and does not contain . /
+:param dirname: String specifying name of the
+directory to be validated</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-db.dao.file_dao">
+<span id="db-dao-file-dao-module"></span><h2>db.dao.file_dao module<a class="headerlink" href="#module-db.dao.file_dao" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="db.dao.file_dao.FileDao">
+<em class="property">class </em><code class="sig-prename descclassname">db.dao.file_dao.</code><code class="sig-name descname">FileDao</code><a class="headerlink" href="#db.dao.file_dao.FileDao" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Data access object for File model</p>
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.create_file">
+<em class="property">static </em><code class="sig-name descname">create_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">commit</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.create_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new file record in the database
+:param file: File model object to be inserted
+:param commit: Specifies whether to commit to database</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.delete_file">
+<em class="property">static </em><code class="sig-name descname">delete_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">commit</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.delete_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes an existing file record from the database
+:param file: File model object to be deleted
+:param commit: Specifies whether to commit to database</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.get_all_files">
+<em class="property">static </em><code class="sig-name descname">get_all_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.get_all_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.get_file_from_current_directory">
+<em class="property">static </em><code class="sig-name descname">get_file_from_current_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">current_directory</span></em>, <em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.get_file_from_current_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.get_file_size">
+<em class="property">static </em><code class="sig-name descname">get_file_size</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.get_file_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.get_files_from_current_directory">
+<em class="property">static </em><code class="sig-name descname">get_files_from_current_directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">current_directory</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.get_files_from_current_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return all files with in the current directory
+:param current_directory: Directory model object
+specifying current directory</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.get_highest_order_of_sectors">
+<em class="property">static </em><code class="sig-name descname">get_highest_order_of_sectors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.get_highest_order_of_sectors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.get_path">
+<em class="property">static </em><code class="sig-name descname">get_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.get_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.insert_data_in_file">
+<em class="property">static </em><code class="sig-name descname">insert_data_in_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.insert_data_in_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>inserts the data in the available sectors
+:param file: File model object whose data is
+to be stored
+:param data: The data to insert
+:param order: The preceding order number</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.is_unique_filename">
+<em class="property">static </em><code class="sig-name descname">is_unique_filename</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">current_directory</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.is_unique_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if file is unique within the
+directory
+:param current_directory: Directory model object
+specifying current directory
+:param filename: String specifying filename to be
+validated</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.is_valid_filename">
+<em class="property">static </em><code class="sig-name descname">is_valid_filename</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.is_valid_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if filename does not start with
+a special char and does not contain /
+:param filename: String specifying filename
+to be validated</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.read_from_file">
+<em class="property">static </em><code class="sig-name descname">read_from_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.read_from_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.file_dao.FileDao.remove_data_in_file">
+<em class="property">static </em><code class="sig-name descname">remove_data_in_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">commit</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.file_dao.FileDao.remove_data_in_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the data in the sectors of the file
+:param file: File model object whose data is
+to be removed
+:param commit: Specifies whether to commit
+to database</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-db.dao.sector_dao">
+<span id="db-dao-sector-dao-module"></span><h2>db.dao.sector_dao module<a class="headerlink" href="#module-db.dao.sector_dao" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="db.dao.sector_dao.SectorDao">
+<em class="property">class </em><code class="sig-prename descclassname">db.dao.sector_dao.</code><code class="sig-name descname">SectorDao</code><a class="headerlink" href="#db.dao.sector_dao.SectorDao" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Data access object for Sector model</p>
+<dl class="py method">
+<dt id="db.dao.sector_dao.SectorDao.create_sector">
+<em class="property">static </em><code class="sig-name descname">create_sector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sector</span></em>, <em class="sig-param"><span class="n">commit</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.sector_dao.SectorDao.create_sector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new sector record in the database
+:param sector: Sector object model to be inserted
+:param commit: Specifies whether to commit to database</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.sector_dao.SectorDao.create_sectors_division">
+<em class="property">static </em><code class="sig-name descname">create_sectors_division</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sector_size</span></em>, <em class="sig-param"><span class="n">total_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.sector_dao.SectorDao.create_sectors_division" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates all the possible sector records in the
+database
+:param sector_size: Specifies the Sector size
+:param total_size: Specifies the total disk size</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.sector_dao.SectorDao.delete_sector">
+<em class="property">static </em><code class="sig-name descname">delete_sector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sector</span></em>, <em class="sig-param"><span class="n">commit</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.sector_dao.SectorDao.delete_sector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes an existing sector record from the database
+:param sector: Sector object model to be deleted
+:param commit: Specifies whether to commit to database</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.sector_dao.SectorDao.get_first_unused_sector">
+<em class="property">static </em><code class="sig-name descname">get_first_unused_sector</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.sector_dao.SectorDao.get_first_unused_sector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the first available sector</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.sector_dao.SectorDao.get_unused_sectors_count">
+<em class="property">static </em><code class="sig-name descname">get_unused_sectors_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.sector_dao.SectorDao.get_unused_sectors_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the total count of available sectors</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.sector_dao.SectorDao.insert_sector_data">
+<em class="property">static </em><code class="sig-name descname">insert_sector_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sector</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">file_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.sector_dao.SectorDao.insert_sector_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inserts the values in an already created sector
+record
+:param sector: Sector object model to be manipulated
+:param data: Specifies the data to be inserted
+:param file_id: Specifies the id of the file linked
+with this sector</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.sector_dao.SectorDao.is_memory_full">
+<em class="property">static </em><code class="sig-name descname">is_memory_full</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.sector_dao.SectorDao.is_memory_full" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if no more sectors
+are available</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-db.dao.session_dao">
+<span id="db-dao-session-dao-module"></span><h2>db.dao.session_dao module<a class="headerlink" href="#module-db.dao.session_dao" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="db.dao.session_dao.SessionDao">
+<em class="property">class </em><code class="sig-prename descclassname">db.dao.session_dao.</code><code class="sig-name descname">SessionDao</code><a class="headerlink" href="#db.dao.session_dao.SessionDao" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Data access object for Session model</p>
+<dl class="py method">
+<dt id="db.dao.session_dao.SessionDao.create_session">
+<em class="property">static </em><code class="sig-name descname">create_session</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">session</span></em>, <em class="sig-param"><span class="n">commit</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.session_dao.SessionDao.create_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new session record in database
+:param session: Session model object to be inserted
+:param commit: Specifies whether to commit to database</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="db.dao.session_dao.SessionDao.get_last_session">
+<em class="property">static </em><code class="sig-name descname">get_last_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db.dao.session_dao.SessionDao.get_last_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the latest session from database</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-db.dao">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-db.dao" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  
+    
+  
+
+  <h3>Contents</h3>
+  <ul>
+<li><a class="reference internal" href="#">db.dao package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-db.dao.directory_dao">db.dao.directory_dao module</a></li>
+<li><a class="reference internal" href="#module-db.dao.file_dao">db.dao.file_dao module</a></li>
+<li><a class="reference internal" href="#module-db.dao.sector_dao">db.dao.sector_dao module</a></li>
+<li><a class="reference internal" href="#module-db.dao.session_dao">db.dao.session_dao module</a></li>
+<li><a class="reference internal" href="#module-db.dao">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../index.html">Overview</a>
+    
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Maaz Bin Tahir, Eesha Arif, Syed Baber Tameez.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+  <script src="../_static/version_warning_offset.js"></script>
+
+  </body>
+</html>

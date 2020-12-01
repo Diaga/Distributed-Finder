@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>db.models package &#8212; Distributed Finder v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/flask.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
+   
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Distributed Finder v0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">db.models package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="db-models-package">
+<h1>db.models package<a class="headerlink" href="#db-models-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-db.models.directory">
+<span id="db-models-directory-module"></span><h2>db.models.directory module<a class="headerlink" href="#module-db.models.directory" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="db.models.directory.Directory">
+<em class="property">class </em><code class="sig-prename descclassname">db.models.directory.</code><code class="sig-name descname">Directory</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.models.directory.Directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<p>Directory model table</p>
+<dl class="py attribute">
+<dt id="db.models.directory.Directory.created_at">
+<code class="sig-name descname">created_at</code><a class="headerlink" href="#db.models.directory.Directory.created_at" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.directory.Directory.directory">
+<code class="sig-name descname">directory</code><a class="headerlink" href="#db.models.directory.Directory.directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.directory.Directory.directory_id">
+<code class="sig-name descname">directory_id</code><a class="headerlink" href="#db.models.directory.Directory.directory_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.directory.Directory.files">
+<code class="sig-name descname">files</code><a class="headerlink" href="#db.models.directory.Directory.files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.directory.Directory.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#db.models.directory.Directory.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.directory.Directory.is_root">
+<code class="sig-name descname">is_root</code><a class="headerlink" href="#db.models.directory.Directory.is_root" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.directory.Directory.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#db.models.directory.Directory.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-db.models.file">
+<span id="db-models-file-module"></span><h2>db.models.file module<a class="headerlink" href="#module-db.models.file" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="db.models.file.File">
+<em class="property">class </em><code class="sig-prename descclassname">db.models.file.</code><code class="sig-name descname">File</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.models.file.File" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<p>File model table</p>
+<dl class="py attribute">
+<dt id="db.models.file.File.created_at">
+<code class="sig-name descname">created_at</code><a class="headerlink" href="#db.models.file.File.created_at" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.file.File.directory_id">
+<code class="sig-name descname">directory_id</code><a class="headerlink" href="#db.models.file.File.directory_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.file.File.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#db.models.file.File.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="db.models.file.File.is_empty">
+<em class="property">property </em><code class="sig-name descname">is_empty</code><a class="headerlink" href="#db.models.file.File.is_empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.file.File.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#db.models.file.File.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.file.File.sectors">
+<code class="sig-name descname">sectors</code><a class="headerlink" href="#db.models.file.File.sectors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-db.models.sector">
+<span id="db-models-sector-module"></span><h2>db.models.sector module<a class="headerlink" href="#module-db.models.sector" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="db.models.sector.Sector">
+<em class="property">class </em><code class="sig-prename descclassname">db.models.sector.</code><code class="sig-name descname">Sector</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.models.sector.Sector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<p>Sector model table</p>
+<dl class="py attribute">
+<dt id="db.models.sector.Sector.data">
+<code class="sig-name descname">data</code><a class="headerlink" href="#db.models.sector.Sector.data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.sector.Sector.file_id">
+<code class="sig-name descname">file_id</code><a class="headerlink" href="#db.models.sector.Sector.file_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.sector.Sector.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#db.models.sector.Sector.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.sector.Sector.order">
+<code class="sig-name descname">order</code><a class="headerlink" href="#db.models.sector.Sector.order" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-db.models.session">
+<span id="db-models-session-module"></span><h2>db.models.session module<a class="headerlink" href="#module-db.models.session" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="db.models.session.Session">
+<em class="property">class </em><code class="sig-prename descclassname">db.models.session.</code><code class="sig-name descname">Session</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.models.session.Session" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.ext.declarative.api.Base</span></code></p>
+<p>Session model table</p>
+<dl class="py attribute">
+<dt id="db.models.session.Session.created_at">
+<code class="sig-name descname">created_at</code><a class="headerlink" href="#db.models.session.Session.created_at" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="db.models.session.Session.id">
+<code class="sig-name descname">id</code><a class="headerlink" href="#db.models.session.Session.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-db.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-db.models" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  
+    
+  
+
+  <h3>Contents</h3>
+  <ul>
+<li><a class="reference internal" href="#">db.models package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-db.models.directory">db.models.directory module</a></li>
+<li><a class="reference internal" href="#module-db.models.file">db.models.file module</a></li>
+<li><a class="reference internal" href="#module-db.models.sector">db.models.sector module</a></li>
+<li><a class="reference internal" href="#module-db.models.session">db.models.session module</a></li>
+<li><a class="reference internal" href="#module-db.models">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../index.html">Overview</a>
+    
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Maaz Bin Tahir, Eesha Arif, Syed Baber Tameez.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+  <script src="../_static/version_warning_offset.js"></script>
+
+  </body>
+</html>

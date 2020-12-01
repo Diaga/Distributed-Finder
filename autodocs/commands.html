@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>commands package &#8212; Distributed Finder v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/flask.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
+   
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Distributed Finder v0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">commands package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="commands-package">
+<h1>commands package<a class="headerlink" href="#commands-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-commands.cat">
+<span id="commands-cat-module"></span><h2>commands.cat module<a class="headerlink" href="#module-commands.cat" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="commands.cat.CatCommand">
+<em class="property">class </em><code class="sig-prename descclassname">commands.cat.</code><code class="sig-name descname">CatCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.cat.CatCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<p>Prints the file to terminal. If ‘-w’ option is specified, the cat command
+prompts the user for input and overwrites the file with that input.</p>
+<p>Usage: cat [OPTIONS] &lt;path_to_file&gt;</p>
+<dl class="py attribute">
+<dt id="commands.cat.CatCommand.arguments">
+<code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.cat.CatCommand.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.cat.CatCommand.command">
+<code class="sig-name descname">command</code><em class="property"> = 'cat'</em><a class="headerlink" href="#commands.cat.CatCommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.cat.CatCommand.options">
+<code class="sig-name descname">options</code><em class="property"> = [-w]</em><a class="headerlink" href="#commands.cat.CatCommand.options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.cat.CatCommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#commands.cat.CatCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.cat.CatCommand.write_to_file">
+<code class="sig-name descname">write_to_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.cat.CatCommand.write_to_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-commands.cat_at">
+<span id="commands-cat-at-module"></span><h2>commands.cat_at module<a class="headerlink" href="#module-commands.cat_at" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="commands.cat_at.CatAtCommand">
+<em class="property">class </em><code class="sig-prename descclassname">commands.cat_at.</code><code class="sig-name descname">CatAtCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.cat_at.CatAtCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<dl class="py attribute">
+<dt id="commands.cat_at.CatAtCommand.arguments">
+<code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.IntArgument object&gt;, &lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.cat_at.CatAtCommand.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.cat_at.CatAtCommand.command">
+<code class="sig-name descname">command</code><em class="property"> = 'cat-at'</em><a class="headerlink" href="#commands.cat_at.CatAtCommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.cat_at.CatAtCommand.options">
+<code class="sig-name descname">options</code><em class="property"> = [-w]</em><a class="headerlink" href="#commands.cat_at.CatAtCommand.options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.cat_at.CatAtCommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#commands.cat_at.CatAtCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.cat_at.CatAtCommand.write_to_file">
+<code class="sig-name descname">write_to_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em>, <em class="sig-param"><span class="n">index</span></em>, <em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.cat_at.CatAtCommand.write_to_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-commands.cat_end">
+<span id="commands-cat-end-module"></span><h2>commands.cat_end module<a class="headerlink" href="#module-commands.cat_end" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="commands.cat_end.CatEndCommand">
+<em class="property">class </em><code class="sig-prename descclassname">commands.cat_end.</code><code class="sig-name descname">CatEndCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.cat_end.CatEndCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<dl class="py attribute">
+<dt id="commands.cat_end.CatEndCommand.arguments">
+<code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.cat_end.CatEndCommand.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.cat_end.CatEndCommand.command">
+<code class="sig-name descname">command</code><em class="property"> = 'cat-end'</em><a class="headerlink" href="#commands.cat_end.CatEndCommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.cat_end.CatEndCommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#commands.cat_end.CatEndCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-commands.cd">
+<span id="commands-cd-module"></span><h2>commands.cd module<a class="headerlink" href="#module-commands.cd" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="commands.cd.CDCommand">
+<em class="property">class </em><code class="sig-prename descclassname">commands.cd.</code><code class="sig-name descname">CDCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.cd.CDCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<dl class="py attribute">
+<dt id="commands.cd.CDCommand.arguments">
+<code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.cd.CDCommand.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.cd.CDCommand.command">
+<code class="sig-name descname">command</code><em class="property"> = 'cd'</em><a class="headerlink" href="#commands.cd.CDCommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.cd.CDCommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#commands.cd.CDCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-commands.ls">
+<span id="commands-ls-module"></span><h2>commands.ls module<a class="headerlink" href="#module-commands.ls" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="commands.ls.LSCommand">
+<em class="property">class </em><code class="sig-prename descclassname">commands.ls.</code><code class="sig-name descname">LSCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.ls.LSCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<dl class="py attribute">
+<dt id="commands.ls.LSCommand.command">
+<code class="sig-name descname">command</code><em class="property"> = 'ls'</em><a class="headerlink" href="#commands.ls.LSCommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.ls.LSCommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#commands.ls.LSCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-commands.mkdir">
+<span id="commands-mkdir-module"></span><h2>commands.mkdir module<a class="headerlink" href="#module-commands.mkdir" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="commands.mkdir.MkDirCommand">
+<em class="property">class </em><code class="sig-prename descclassname">commands.mkdir.</code><code class="sig-name descname">MkDirCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.mkdir.MkDirCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<dl class="py attribute">
+<dt id="commands.mkdir.MkDirCommand.arguments">
+<code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.mkdir.MkDirCommand.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.mkdir.MkDirCommand.command">
+<code class="sig-name descname">command</code><em class="property"> = 'mkdir'</em><a class="headerlink" href="#commands.mkdir.MkDirCommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.mkdir.MkDirCommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#commands.mkdir.MkDirCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-commands.mv">
+<span id="commands-mv-module"></span><h2>commands.mv module<a class="headerlink" href="#module-commands.mv" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="commands.mv.MvCommand">
+<em class="property">class </em><code class="sig-prename descclassname">commands.mv.</code><code class="sig-name descname">MvCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.mv.MvCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<dl class="py attribute">
+<dt id="commands.mv.MvCommand.arguments">
+<code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;, &lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.mv.MvCommand.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.mv.MvCommand.command">
+<code class="sig-name descname">command</code><em class="property"> = 'mv'</em><a class="headerlink" href="#commands.mv.MvCommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.mv.MvCommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#commands.mv.MvCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-commands.ping">
+<span id="commands-ping-module"></span><h2>commands.ping module<a class="headerlink" href="#module-commands.ping" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="commands.ping.PingCommand">
+<em class="property">class </em><code class="sig-prename descclassname">commands.ping.</code><code class="sig-name descname">PingCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.ping.PingCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<dl class="py attribute">
+<dt id="commands.ping.PingCommand.arguments">
+<code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.IntArgument object&gt;]</em><a class="headerlink" href="#commands.ping.PingCommand.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.ping.PingCommand.command">
+<code class="sig-name descname">command</code><em class="property"> = 'ping'</em><a class="headerlink" href="#commands.ping.PingCommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.ping.PingCommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#commands.ping.PingCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-commands.pwd">
+<span id="commands-pwd-module"></span><h2>commands.pwd module<a class="headerlink" href="#module-commands.pwd" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="commands.pwd.PWDcommand">
+<em class="property">class </em><code class="sig-prename descclassname">commands.pwd.</code><code class="sig-name descname">PWDcommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.pwd.PWDcommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<dl class="py attribute">
+<dt id="commands.pwd.PWDcommand.command">
+<code class="sig-name descname">command</code><em class="property"> = 'pwd'</em><a class="headerlink" href="#commands.pwd.PWDcommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.pwd.PWDcommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#commands.pwd.PWDcommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-commands.rm">
+<span id="commands-rm-module"></span><h2>commands.rm module<a class="headerlink" href="#module-commands.rm" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="commands.rm.RmCommand">
+<em class="property">class </em><code class="sig-prename descclassname">commands.rm.</code><code class="sig-name descname">RmCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.rm.RmCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<dl class="py attribute">
+<dt id="commands.rm.RmCommand.arguments">
+<code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.rm.RmCommand.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.rm.RmCommand.command">
+<code class="sig-name descname">command</code><em class="property"> = 'rm'</em><a class="headerlink" href="#commands.rm.RmCommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.rm.RmCommand.options">
+<code class="sig-name descname">options</code><em class="property"> = [-rf]</em><a class="headerlink" href="#commands.rm.RmCommand.options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.rm.RmCommand.recursive_remove">
+<code class="sig-name descname">recursive_remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">directory</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.rm.RmCommand.recursive_remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively removes directories
+:param directory: Directory model object to search</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="commands.rm.RmCommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#commands.rm.RmCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-commands.touch">
+<span id="commands-touch-module"></span><h2>commands.touch module<a class="headerlink" href="#module-commands.touch" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="commands.touch.TouchCommand">
+<em class="property">class </em><code class="sig-prename descclassname">commands.touch.</code><code class="sig-name descname">TouchCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.touch.TouchCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<dl class="py attribute">
+<dt id="commands.touch.TouchCommand.arguments">
+<code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.touch.TouchCommand.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="commands.touch.TouchCommand.command">
+<code class="sig-name descname">command</code><em class="property"> = 'touch'</em><a class="headerlink" href="#commands.touch.TouchCommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="commands.touch.TouchCommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#commands.touch.TouchCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-commands">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-commands" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  
+    
+  
+
+  <h3>Contents</h3>
+  <ul>
+<li><a class="reference internal" href="#">commands package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-commands.cat">commands.cat module</a></li>
+<li><a class="reference internal" href="#module-commands.cat_at">commands.cat_at module</a></li>
+<li><a class="reference internal" href="#module-commands.cat_end">commands.cat_end module</a></li>
+<li><a class="reference internal" href="#module-commands.cd">commands.cd module</a></li>
+<li><a class="reference internal" href="#module-commands.ls">commands.ls module</a></li>
+<li><a class="reference internal" href="#module-commands.mkdir">commands.mkdir module</a></li>
+<li><a class="reference internal" href="#module-commands.mv">commands.mv module</a></li>
+<li><a class="reference internal" href="#module-commands.ping">commands.ping module</a></li>
+<li><a class="reference internal" href="#module-commands.pwd">commands.pwd module</a></li>
+<li><a class="reference internal" href="#module-commands.rm">commands.rm module</a></li>
+<li><a class="reference internal" href="#module-commands.touch">commands.touch module</a></li>
+<li><a class="reference internal" href="#module-commands">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../index.html">Overview</a>
+    
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Maaz Bin Tahir, Eesha Arif, Syed Baber Tameez.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+  <script src="../_static/version_warning_offset.js"></script>
+
+  </body>
+</html>

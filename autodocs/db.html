@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>db package &#8212; Distributed Finder v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/flask.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
+   
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Distributed Finder v0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">db package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="db-package">
+<h1>db package<a class="headerlink" href="#db-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="db.dao.html">db.dao package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="db.dao.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db.dao.html#module-db.dao.directory_dao">db.dao.directory_dao module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db.dao.html#module-db.dao.file_dao">db.dao.file_dao module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db.dao.html#module-db.dao.sector_dao">db.dao.sector_dao module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db.dao.html#module-db.dao.session_dao">db.dao.session_dao module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db.dao.html#module-db.dao">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="db.models.html">db.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="db.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db.models.html#module-db.models.directory">db.models.directory module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db.models.html#module-db.models.file">db.models.file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db.models.html#module-db.models.sector">db.models.sector module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db.models.html#module-db.models.session">db.models.session module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="db.models.html#module-db.models">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-db.base">
+<span id="db-base-module"></span><h2>db.base module<a class="headerlink" href="#module-db.base" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="db.base.uuid_str">
+<code class="sig-prename descclassname">db.base.</code><code class="sig-name descname">uuid_str</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#db.base.uuid_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-db.db">
+<span id="db-db-module"></span><h2>db.db module<a class="headerlink" href="#module-db.db" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="db.db.DB">
+<em class="property">class </em><code class="sig-prename descclassname">db.db.</code><code class="sig-name descname">DB</code><a class="headerlink" href="#db.db.DB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="db.db.DB.connect">
+<code class="sig-name descname">connect</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">db_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#db.db.DB.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start a connection to database
+:param db_path: Path to sqlite database</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="db.db.DB.session">
+<code class="sig-name descname">session</code><em class="property"> = None</em><a class="headerlink" href="#db.db.DB.session" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-db">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-db" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  
+    
+  
+
+  <h3>Contents</h3>
+  <ul>
+<li><a class="reference internal" href="#">db package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-db.base">db.base module</a></li>
+<li><a class="reference internal" href="#module-db.db">db.db module</a></li>
+<li><a class="reference internal" href="#module-db">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../index.html">Overview</a>
+    
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Maaz Bin Tahir, Eesha Arif, Syed Baber Tameez.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+  <script src="../_static/version_warning_offset.js"></script>
+
+  </body>
+</html>

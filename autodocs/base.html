@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>base package &#8212; Distributed Finder v0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/flask.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <script>DOCUMENTATION_OPTIONS.URL_ROOT = '../';</script>
+   
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Distributed Finder v0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">base package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="base-package">
+<h1>base package<a class="headerlink" href="#base-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-base.arguments">
+<span id="base-arguments-module"></span><h2>base.arguments module<a class="headerlink" href="#module-base.arguments" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="base.arguments.BaseArgument">
+<em class="property">class </em><code class="sig-prename descclassname">base.arguments.</code><code class="sig-name descname">BaseArgument</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">options</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">required</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.arguments.BaseArgument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dl class="py method">
+<dt id="base.arguments.BaseArgument.data">
+<em class="property">property </em><code class="sig-name descname">data</code><a class="headerlink" href="#base.arguments.BaseArgument.data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="base.arguments.BaseArgument.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.arguments.BaseArgument.reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="base.arguments.BaseArgument.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_input</span></em>, <em class="sig-param"><span class="n">options</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.arguments.BaseArgument.validate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="base.arguments.IntArgument">
+<em class="property">class </em><code class="sig-prename descclassname">base.arguments.</code><code class="sig-name descname">IntArgument</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">options</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">required</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.arguments.IntArgument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#base.arguments.BaseArgument" title="base.arguments.BaseArgument"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.arguments.BaseArgument</span></code></a></p>
+<p>Parses the argument as an integer</p>
+<dl class="py method">
+<dt id="base.arguments.IntArgument.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_input</span></em>, <em class="sig-param"><span class="n">options</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.arguments.IntArgument.validate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="base.arguments.StaticArgument">
+<em class="property">class </em><code class="sig-prename descclassname">base.arguments.</code><code class="sig-name descname">StaticArgument</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arguments</span></em>, <em class="sig-param"><span class="n">options</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">required</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.arguments.StaticArgument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#base.arguments.BaseArgument" title="base.arguments.BaseArgument"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.arguments.BaseArgument</span></code></a></p>
+<dl class="py method">
+<dt id="base.arguments.StaticArgument.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_input</span></em>, <em class="sig-param"><span class="n">options</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.arguments.StaticArgument.validate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="base.arguments.StringArgument">
+<em class="property">class </em><code class="sig-prename descclassname">base.arguments.</code><code class="sig-name descname">StringArgument</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">options</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">required</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.arguments.StringArgument" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#base.arguments.BaseArgument" title="base.arguments.BaseArgument"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.arguments.BaseArgument</span></code></a></p>
+<p>Parses the argument as a result</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-base.command">
+<span id="base-command-module"></span><h2>base.command module<a class="headerlink" href="#module-base.command" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="base.command.BaseCommand">
+<em class="property">class </em><code class="sig-prename descclassname">base.command.</code><code class="sig-name descname">BaseCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.command.BaseCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Base command for terminal
+Command Signature: &lt;command&gt; &lt;arg1&gt; &lt;arg2&gt; …</p>
+<dl class="py attribute">
+<dt id="base.command.BaseCommand.arguments">
+<code class="sig-name descname">arguments</code><em class="property"> = []</em><a class="headerlink" href="#base.command.BaseCommand.arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.command.BaseCommand.command">
+<code class="sig-name descname">command</code><em class="property"> = None</em><a class="headerlink" href="#base.command.BaseCommand.command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="base.command.BaseCommand.get_input">
+<code class="sig-name descname">get_input</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prompt</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.command.BaseCommand.get_input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="base.command.BaseCommand.log">
+<code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em>, <em class="sig-param"><span class="n">prefix</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.command.BaseCommand.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="base.command.BaseCommand.match">
+<code class="sig-name descname">match</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">command</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.command.BaseCommand.match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if user input matches this command signature</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="base.command.BaseCommand.options">
+<code class="sig-name descname">options</code><em class="property"> = []</em><a class="headerlink" href="#base.command.BaseCommand.options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="base.command.BaseCommand.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.command.BaseCommand.reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="base.command.BaseCommand.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.command.BaseCommand.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="base.command.BaseCommand.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arguments</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.command.BaseCommand.validate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-base.option">
+<span id="base-option-module"></span><h2>base.option module<a class="headerlink" href="#module-base.option" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="base.option.Option">
+<em class="property">class </em><code class="sig-prename descclassname">base.option.</code><code class="sig-name descname">Option</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">option</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.option.Option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dl class="py method">
+<dt id="base.option.Option.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.option.Option.reset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="base.option.Option.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">option</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.option.Option.validate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="base.option.StringOption">
+<em class="property">class </em><code class="sig-prename descclassname">base.option.</code><code class="sig-name descname">StringOption</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">option</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.option.StringOption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#base.option.Option" title="base.option.Option"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.option.Option</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-base.terminal">
+<span id="base-terminal-module"></span><h2>base.terminal module<a class="headerlink" href="#module-base.terminal" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="base.terminal.BaseTerminal">
+<em class="property">class </em><code class="sig-prename descclassname">base.terminal.</code><code class="sig-name descname">BaseTerminal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">commands</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">prefix</span><span class="o">=</span><span class="default_value">'finder'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Handles the user input and handles matching commands</p>
+<dl class="py class">
+<dt id="base.terminal.BaseTerminal.Context">
+<em class="property">class </em><code class="sig-name descname">Context</code><a class="headerlink" href="#base.terminal.BaseTerminal.Context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Holds the context for finder terminal</p>
+<dl class="py method">
+<dt id="base.terminal.BaseTerminal.Context.parse">
+<code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">is_file</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.Context.parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses path to a directory object
+:param path: Path to parse
+:param is_file: Specifies if we are looking for a file or
+directory</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.terminal.BaseTerminal.get_input">
+<code class="sig-name descname">get_input</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prompt</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">prefix</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.get_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around input() to have a terminal like appearance</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.terminal.BaseTerminal.get_prefix">
+<em class="property">property </em><code class="sig-name descname">get_prefix</code><a class="headerlink" href="#base.terminal.BaseTerminal.get_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="base.terminal.BaseTerminal.log">
+<code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em>, <em class="sig-param"><span class="n">prefix</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints message to console with specified prefix</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.terminal.BaseTerminal.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the terminal in loop</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-base">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-base" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+  <span id="sidebar-top"></span>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  
+    
+  
+
+  <h3>Contents</h3>
+  <ul>
+<li><a class="reference internal" href="#">base package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-base.arguments">base.arguments module</a></li>
+<li><a class="reference internal" href="#module-base.command">base.command module</a></li>
+<li><a class="reference internal" href="#module-base.option">base.option module</a></li>
+<li><a class="reference internal" href="#module-base.terminal">base.terminal module</a></li>
+<li><a class="reference internal" href="#module-base">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<h3>Navigation</h3>
+<ul>
+  <li><a href="../index.html">Overview</a>
+    
+  </li>
+</ul>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Maaz Bin Tahir, Eesha Arif, Syed Baber Tameez.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.3.1.
+    </div>
+  <script src="../_static/version_warning_offset.js"></script>
+
+  </body>
+</html>
