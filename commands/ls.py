@@ -20,7 +20,7 @@ class LSCommand(BaseCommand):
                 if ((len(list_dirlist)-1) >= (n+2)):
                     print(list_dirlist[n], list_dirlist[n+1],
                           list_dirlist[n+2])
-                elif((len(list_dirlist)-1) < (n+2) 
+                elif((len(list_dirlist)-1) < (n+2)
                     and (len(list_dirlist)-1) >= (n+1)):
                         print(list_dirlist[n], list_dirlist[n+1])
                 else:
