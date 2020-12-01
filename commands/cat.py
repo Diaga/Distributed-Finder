@@ -5,6 +5,12 @@ from db.dao.file_dao import FileDao
 
 
 class CatCommand(BaseCommand):
+    """Prints the file to terminal. If '-w' option is specified, the cat command
+    prompts the user for input and overwrites the file with that input.
+
+    Usage: cat [OPTIONS] <path_to_file>
+    """
+
     command = 'cat'
     arguments = [StringArgument()]
     options = [StringOption('-w')]
