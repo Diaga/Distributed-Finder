@@ -5,6 +5,12 @@ from db.db import DB
 
 
 class MvCommand(BaseCommand):
+    """Moves the given file or directory to the given target directory.
+        Raises an error if the file/directory to be moved does not exist.
+
+        Usage: mv <filename1> <targetDirectory> 
+        above command moves filename1 (either a file or a directory)
+        to the targetDirectory."""
 
     command = 'mv'
     arguments = [StringArgument(), StringArgument()]
