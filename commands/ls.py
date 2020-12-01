@@ -7,7 +7,9 @@ from db.dao.file_dao import FileDao
 class LSCommand(BaseCommand):
     """Print out the files and directories that presently
         exist in the directory user currently resides in.
+
         Usage: ls"""
+        
     command = 'ls'
 
     def run(self):

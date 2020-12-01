@@ -5,10 +5,13 @@ from db.dao.file_dao import FileDao
 
 class CatEndCommand(BaseCommand):
     """Appends user input at the end of the given file name.
+
         Usage: cat-end <filename>
+
         this command prompts the user to input the text,
         by displaying "Start Writing: ". Whatever is entered
         is appended to the <filename>."""
+        
     command = 'cat-end'
     arguments = [StringArgument()]
 
