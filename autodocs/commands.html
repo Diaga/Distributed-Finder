@@ -96,6 +96,13 @@ prompts the user for input and overwrites the file with that input.</p>
 <dt id="commands.cat_at.CatAtCommand">
 <em class="property">class </em><code class="sig-prename descclassname">commands.cat_at.</code><code class="sig-name descname">CatAtCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.cat_at.CatAtCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<p>Without -w option, cat-at reads the content which starts at the
+specified index with a specific size (which is taken as a separate
+input).
+With the -w option, it appends the content that is logged
+by the user separately at the specified index.</p>
+<p>Usage: cat-at &lt;index&gt; &lt;fileName&gt;
+cat-at -w &lt;index&gt; &lt;fileName&gt;</p>
 <dl class="py attribute">
 <dt id="commands.cat_at.CatAtCommand.arguments">
 <code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.IntArgument object&gt;, &lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.cat_at.CatAtCommand.arguments" title="Permalink to this definition">¶</a></dt>
@@ -130,6 +137,11 @@ prompts the user for input and overwrites the file with that input.</p>
 <dt id="commands.cat_end.CatEndCommand">
 <em class="property">class </em><code class="sig-prename descclassname">commands.cat_end.</code><code class="sig-name descname">CatEndCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.cat_end.CatEndCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<p>Appends user input at the end of the given file name.</p>
+<p>Usage: cat-end &lt;filename&gt;</p>
+<p>this command prompts the user to input the text,
+by displaying “Start Writing: “. Whatever is entered
+is appended to the &lt;filename&gt;.</p>
 <dl class="py attribute">
 <dt id="commands.cat_end.CatEndCommand.arguments">
 <code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.cat_end.CatEndCommand.arguments" title="Permalink to this definition">¶</a></dt>
@@ -154,6 +166,9 @@ prompts the user for input and overwrites the file with that input.</p>
 <dt id="commands.cd.CDCommand">
 <em class="property">class </em><code class="sig-prename descclassname">commands.cd.</code><code class="sig-name descname">CDCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.cd.CDCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<p>Used to change the directory in which the user resides in,
+to one of the constituents directories.</p>
+<p>Usage: cd &lt;directory_name&gt;</p>
 <dl class="py attribute">
 <dt id="commands.cd.CDCommand.arguments">
 <code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.cd.CDCommand.arguments" title="Permalink to this definition">¶</a></dt>
@@ -178,6 +193,9 @@ prompts the user for input and overwrites the file with that input.</p>
 <dt id="commands.ls.LSCommand">
 <em class="property">class </em><code class="sig-prename descclassname">commands.ls.</code><code class="sig-name descname">LSCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.ls.LSCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<p>Print out the files and directories that presently
+exist in the directory user currently resides in.</p>
+<p>Usage: ls</p>
 <dl class="py attribute">
 <dt id="commands.ls.LSCommand.command">
 <code class="sig-name descname">command</code><em class="property"> = 'ls'</em><a class="headerlink" href="#commands.ls.LSCommand.command" title="Permalink to this definition">¶</a></dt>
@@ -197,6 +215,9 @@ prompts the user for input and overwrites the file with that input.</p>
 <dt id="commands.mkdir.MkDirCommand">
 <em class="property">class </em><code class="sig-prename descclassname">commands.mkdir.</code><code class="sig-name descname">MkDirCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.mkdir.MkDirCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<p>Used to make a new directory inside the directory
+user presently exists in.</p>
+<p>Usage: mkdir dir_1</p>
 <dl class="py attribute">
 <dt id="commands.mkdir.MkDirCommand.arguments">
 <code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.mkdir.MkDirCommand.arguments" title="Permalink to this definition">¶</a></dt>
@@ -221,6 +242,11 @@ prompts the user for input and overwrites the file with that input.</p>
 <dt id="commands.mv.MvCommand">
 <em class="property">class </em><code class="sig-prename descclassname">commands.mv.</code><code class="sig-name descname">MvCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.mv.MvCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<p>Moves the given file or directory to the given target directory.
+Raises an error if the file/directory to be moved does not exist.</p>
+<p>Usage: mv &lt;filename1&gt; &lt;targetDirectory&gt;</p>
+<p>above command moves filename1 (either a file or a directory)
+to the targetDirectory.</p>
 <dl class="py attribute">
 <dt id="commands.mv.MvCommand.arguments">
 <code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;, &lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.mv.MvCommand.arguments" title="Permalink to this definition">¶</a></dt>
@@ -269,6 +295,9 @@ prompts the user for input and overwrites the file with that input.</p>
 <dt id="commands.pwd.PWDcommand">
 <em class="property">class </em><code class="sig-prename descclassname">commands.pwd.</code><code class="sig-name descname">PWDcommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.pwd.PWDcommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<p>Returns the location of the present working directory,
+user current;y is residing in the file management system.</p>
+<p>Usage: pwd</p>
 <dl class="py attribute">
 <dt id="commands.pwd.PWDcommand.command">
 <code class="sig-name descname">command</code><em class="property"> = 'pwd'</em><a class="headerlink" href="#commands.pwd.PWDcommand.command" title="Permalink to this definition">¶</a></dt>
@@ -288,6 +317,13 @@ prompts the user for input and overwrites the file with that input.</p>
 <dt id="commands.rm.RmCommand">
 <em class="property">class </em><code class="sig-prename descclassname">commands.rm.</code><code class="sig-name descname">RmCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.rm.RmCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<p>Used to delete files and directories.
+Simple ‘rm’ with a filename will remove that file.
+Simple ‘rm’ with a directory name will raise an error.</p>
+<p>If ‘-rf’ option specified, it will delete the desired
+directory along with all its constituent directories.</p>
+<p>Usage: rm &lt;file_name&gt;
+rm -rf &lt;directory_name&gt;</p>
 <dl class="py attribute">
 <dt id="commands.rm.RmCommand.arguments">
 <code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.rm.RmCommand.arguments" title="Permalink to this definition">¶</a></dt>
@@ -324,6 +360,10 @@ prompts the user for input and overwrites the file with that input.</p>
 <dt id="commands.touch.TouchCommand">
 <em class="property">class </em><code class="sig-prename descclassname">commands.touch.</code><code class="sig-name descname">TouchCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#commands.touch.TouchCommand" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="base.html#base.command.BaseCommand" title="base.command.BaseCommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">base.command.BaseCommand</span></code></a></p>
+<p>Creates a new file, specified as an argument with the command.
+Checks for the validity of the file name as well,
+avoiding duplication in file/directory names.</p>
+<p>Usage: touch &lt;file_name&gt;</p>
 <dl class="py attribute">
 <dt id="commands.touch.TouchCommand.arguments">
 <code class="sig-name descname">arguments</code><em class="property"> = [&lt;base.arguments.StringArgument object&gt;]</em><a class="headerlink" href="#commands.touch.TouchCommand.arguments" title="Permalink to this definition">¶</a></dt>

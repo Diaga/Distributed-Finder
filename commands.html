@@ -65,7 +65,14 @@ prompts the user for input and overwrites the file with that input.</p>
 <dl class="py class">
 <dt>
 <em class="property">class </em><code class="sig-prename descclassname">commands.cat_at.</code><code class="sig-name descname">CatAtCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Without -w option, cat-at reads the content which starts at the
+specified index with a specific size (which is taken as a separate
+input).
+With the -w option, it appends the content that is logged
+by the user separately at the specified index.</p>
+<p>Usage: cat-at &lt;index&gt; &lt;fileName&gt;
+cat-at -w &lt;index&gt; &lt;fileName&gt;</p>
+</dd></dl>
 
 </div>
 <div class="section" id="cat-end-command">
@@ -73,7 +80,12 @@ prompts the user for input and overwrites the file with that input.</p>
 <dl class="py class">
 <dt>
 <em class="property">class </em><code class="sig-prename descclassname">commands.cat_end.</code><code class="sig-name descname">CatEndCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Appends user input at the end of the given file name.</p>
+<p>Usage: cat-end &lt;filename&gt;</p>
+<p>this command prompts the user to input the text,
+by displaying “Start Writing: “. Whatever is entered
+is appended to the &lt;filename&gt;.</p>
+</dd></dl>
 
 </div>
 <div class="section" id="commands-cd-command">
@@ -81,7 +93,10 @@ prompts the user for input and overwrites the file with that input.</p>
 <dl class="py class">
 <dt>
 <em class="property">class </em><code class="sig-prename descclassname">commands.cd.</code><code class="sig-name descname">CDCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Used to change the directory in which the user resides in,
+to one of the constituents directories.</p>
+<p>Usage: cd &lt;directory_name&gt;</p>
+</dd></dl>
 
 </div>
 <div class="section" id="commands-ls-command">
@@ -89,7 +104,10 @@ prompts the user for input and overwrites the file with that input.</p>
 <dl class="py class">
 <dt>
 <em class="property">class </em><code class="sig-prename descclassname">commands.ls.</code><code class="sig-name descname">LSCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Print out the files and directories that presently
+exist in the directory user currently resides in.</p>
+<p>Usage: ls</p>
+</dd></dl>
 
 </div>
 <div class="section" id="commands-mkdir-command">
@@ -97,7 +115,10 @@ prompts the user for input and overwrites the file with that input.</p>
 <dl class="py class">
 <dt>
 <em class="property">class </em><code class="sig-prename descclassname">commands.mkdir.</code><code class="sig-name descname">MkDirCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Used to make a new directory inside the directory
+user presently exists in.</p>
+<p>Usage: mkdir dir_1</p>
+</dd></dl>
 
 </div>
 <div class="section" id="commands-mv-command">
@@ -105,7 +126,12 @@ prompts the user for input and overwrites the file with that input.</p>
 <dl class="py class">
 <dt>
 <em class="property">class </em><code class="sig-prename descclassname">commands.mv.</code><code class="sig-name descname">MvCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Moves the given file or directory to the given target directory.
+Raises an error if the file/directory to be moved does not exist.</p>
+<p>Usage: mv &lt;filename1&gt; &lt;targetDirectory&gt;</p>
+<p>above command moves filename1 (either a file or a directory)
+to the targetDirectory.</p>
+</dd></dl>
 
 </div>
 <div class="section" id="commands-ping-command">
@@ -121,7 +147,10 @@ prompts the user for input and overwrites the file with that input.</p>
 <dl class="py class">
 <dt>
 <em class="property">class </em><code class="sig-prename descclassname">commands.pwd.</code><code class="sig-name descname">PWDcommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Returns the location of the present working directory,
+user current;y is residing in the file management system.</p>
+<p>Usage: pwd</p>
+</dd></dl>
 
 </div>
 <div class="section" id="commands-rm-module">
@@ -129,7 +158,14 @@ prompts the user for input and overwrites the file with that input.</p>
 <dl class="py class">
 <dt>
 <em class="property">class </em><code class="sig-prename descclassname">commands.rm.</code><code class="sig-name descname">RmCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span></dt>
-<dd><dl class="py method">
+<dd><p>Used to delete files and directories.
+Simple ‘rm’ with a filename will remove that file.
+Simple ‘rm’ with a directory name will raise an error.</p>
+<p>If ‘-rf’ option specified, it will delete the desired
+directory along with all its constituent directories.</p>
+<p>Usage: rm &lt;file_name&gt;
+rm -rf &lt;directory_name&gt;</p>
+<dl class="py method">
 <dt>
 <code class="sig-name descname">recursive_remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">directory</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Recursively removes directories
@@ -144,7 +180,11 @@ prompts the user for input and overwrites the file with that input.</p>
 <dl class="py class">
 <dt>
 <em class="property">class </em><code class="sig-prename descclassname">commands.touch.</code><code class="sig-name descname">TouchCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span></dt>
-<dd></dd></dl>
+<dd><p>Creates a new file, specified as an argument with the command.
+Checks for the validity of the file name as well,
+avoiding duplication in file/directory names.</p>
+<p>Usage: touch &lt;file_name&gt;</p>
+</dd></dl>
 
 </div>
 </div>
