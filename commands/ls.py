@@ -15,13 +15,13 @@ class LSCommand(BaseCommand):
             for i in range((len(list_dirlist)) - 1):
                 list_dirlist[i] += '       '
             n = m = 0
-            while m < len(list_dirlist):
+            x = len(list_dirlist)
+            while m < x:
                 m = m+3
-                if ((len(list_dirlist)-1) >= (n+2)):
+                if ((x-1) >= (n+2)):
                     print(list_dirlist[n], list_dirlist[n+1],
                           list_dirlist[n+2])
-                elif((len(list_dirlist)-1) < (n+2) and
-                   (len(list_dirlist)-1) >= (n+1)):
+                elif((x-1) < (n+2) and (x-1) >= (n+1)):
                       print(list_dirlist[n], list_dirlist[n+1])
                 else:
                     print(list_dirlist[n])
