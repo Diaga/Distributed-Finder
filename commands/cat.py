@@ -31,7 +31,6 @@ class CatCommand(BaseCommand):
             self.log('Warning: Data will be overwritten', prefix=False)
             text = self.get_input('Start Writing: ', prefix=False)
             self.write_to_file(file, text)
-
         else:
             content = self.read_From_file(file)
             self.log(content, prefix=False)

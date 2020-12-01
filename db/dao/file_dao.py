@@ -1,3 +1,5 @@
+from db.dao.directory_dao import DirectoryDao
+from db.models.directory import Directory
 from db.base import SECTOR_SIZE
 from db.dao.sector_dao import SectorDao
 from db.db import DB
@@ -114,6 +116,25 @@ class FileDao:
         """
         return not (bool(re.search(
             r'^[@!#$%^&+-=\.\/\\\*]|([\\\/]+)', filename)))
+
+    @staticmethod
+    def get_all_files():
+        return DB().session.query(File).all()
+
+    @staticmethod
+    def get_path_of_file(file):
+        current = DB().session.query(Directory).get(file.directory_id)
+        path = str(current)
+        root = DirectoryDao.get_root_directory()
+        restore = current
+        while (current != root):
+            parent = current.directory
+            str_parent = str(parent)
+            path = str_parent+'/'+path
+            current = parent
+        current = restore
+        path = path+'/'+file.name
+        return path
 
     @staticmethod
     def get_highest_order_of_sectors(file):

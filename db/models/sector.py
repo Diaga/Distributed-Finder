@@ -14,4 +14,4 @@ class Sector(Base):
     file_id = Column(String, ForeignKey('file.id'))
 
     def __repr__(self):
-        return f'sector:{self.order}'
+        return f'sector:{self.id}'

@@ -9,7 +9,7 @@ from math import ceil
 
 class CatAtCommand(BaseCommand):
     command = 'cat-at'
-    arguments = [IntArgument(), StringArgument()]
+    arguments = [IntArgument(),  StringArgument()]
     options = [StringOption('-w')]
 
     def write_to_file(self, file, index, text):
@@ -51,7 +51,9 @@ class CatAtCommand(BaseCommand):
             end_order = last_append_sector_order
             for sector in end_sectors:
                 end_order += 1
-                sector.order = end_order
+                SectorDao.insert_sector_data(
+                    sector, data=sector.data,
+                    order=end_order, file_id=sector.file_id)
 
     def read_from_file(self, file, index, size):
         file_size = FileDao.get_file_size(file)
