@@ -1,7 +1,10 @@
-from db.base import sector_size
+from db.dao.directory_dao import DirectoryDao
+from db.models.directory import Directory
+from db.base import SECTOR_SIZE
 from db.dao.sector_dao import SectorDao
 from db.db import DB
 from db.models.file import File
+from math import ceil
 import re
 
 
@@ -29,8 +32,8 @@ class FileDao:
         :param order: The preceding order number
         """
         divs = []
-        for cap in range(0, len(data), sector_size()):
-            divs.append(data[cap: cap + sector_size()])
+        for cap in range(0, len(data), SECTOR_SIZE):
+            divs.append(data[cap: cap + SECTOR_SIZE])
         if order is None:
             order = FileDao.get_highest_order_of_sectors(file)
         for div in divs:
@@ -42,7 +45,7 @@ class FileDao:
             order += 1
             sector = SectorDao.get_first_unused_sector()
             SectorDao.insert_sector_data(
-                sector, div, order, True, file.id)
+                sector, data=div, order=order, file_id=file.id)
         return order
 
     @staticmethod
@@ -56,7 +59,6 @@ class FileDao:
         for sector in file.sectors:
             sector.data = None
             sector.order = 0
-            sector.is_used = False
             sector.file_id = None
         if commit:
             DB().session.commit()
@@ -94,7 +96,7 @@ class FileDao:
         """Returns true if file is unique within the
         directory
         :param current_directory: Directory model object
-         specifying current directory
+        specifying current directory
         :param filename: String specifying filename to be
         validated
         """
@@ -109,12 +111,36 @@ class FileDao:
     @staticmethod
     def is_valid_filename(filename):
         """Returns true if filename does not start with
-         a special char and does not contain \\ /
+        a special char and does not contain \\ /
         :param filename: String specifying filename
         to be validated
         """
         return not (bool(re.search(
             r'^[@!#$%^&+-=\.\/\\\*]|([\\\/]+)', filename)))
+
+    @staticmethod
+    def get_all_files():
+        return DB().session.query(File).all()
+
+    @staticmethod
+    def get_path(obj):
+        isFile = isinstance(obj, File)
+        if isFile:
+            current = DB().session.query(Directory).get(obj.directory_id)
+        else:
+            current = obj.context.current_directory
+
+        path = str(current)
+        root = DirectoryDao.get_root_directory()
+        restore = current
+        while (current != root):
+            parent = current.directory
+            str_parent = str(parent)
+            path = str_parent+'/'+path
+            current = parent
+        current = restore
+        path = path+'/' + (obj.name if isFile else '')
+        return path
 
     @staticmethod
     def get_highest_order_of_sectors(file):
@@ -129,3 +155,50 @@ class FileDao:
             return 0
         sector_orders = map(lambda sector: len(sector.data), file.sectors)
         return sum(sector_orders)
+
+    @staticmethod
+    def read_from_file(file, index=0, size=None):
+        if file.is_empty:
+            raise ValueError('File is empty! No contents to show')
+        file_size = FileDao.get_file_size(file)
+        if size is None:
+            size = file_size
+
+        if index == 0:
+            content = ''
+            file_sectors = file.sectors
+            file_sectors.sort(key=lambda sector: sector.order)
+            content = ''
+            for sector in file_sectors:
+                content += sector.data
+        else:
+            if (index >= file_size):
+                raise ValueError(
+                    'Index larger than content in file!')
+            # The sector from which data is to be read
+            start_read_sector_order = ceil((index + 1) / SECTOR_SIZE)
+            start_read_sector = [
+                sector for sector in
+                file.sectors if sector.order == start_read_sector_order][0]
+
+            # The remaining sectors to be read
+            end_sectors = [
+                sector for sector in file.sectors
+                if sector.order > start_read_sector_order
+            ]
+
+            # Read content of the sector from the specified index
+            start_read_sector_data = start_read_sector.data
+            start_index = index % SECTOR_SIZE
+            content = start_read_sector_data[start_index:]
+
+            # Sorting the remaining sectors by order
+            end_sectors.sort(key=lambda sector: sector.order)
+
+            # Read the content till the size specified
+            count = 0
+            while (size < len(content)) and (count < len(end_sectors)):
+                content += end_sectors[count].data
+                count += 1
+
+        return content[:size]

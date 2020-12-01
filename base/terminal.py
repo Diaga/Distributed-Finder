@@ -4,7 +4,7 @@ from db.dao.session_dao import SessionDao
 from db.dao.file_dao import FileDao
 
 from db.models.session import Session
-from db.base import sector_size, total_size
+from db.base import SECTOR_SIZE, TOTAL_SIZE
 
 
 class BaseTerminal:
@@ -20,7 +20,7 @@ class BaseTerminal:
             """Parses path to a directory object
             :param path: Path to parse
             :param is_file: Specifies if we are looking for a file or
-             directory"""
+            directory"""
             current_directory = self.current_directory
 
             split_path = path.split('/')
@@ -100,7 +100,7 @@ class BaseTerminal:
         if latest_session is None:
             self.log('Welcome to Distributed Finder!', prefix=False)
             SectorDao.create_sectors_division(
-                total_size(), sector_size())
+                TOTAL_SIZE, SECTOR_SIZE)
 
         else:
             self.log(latest_session, prefix=False)
@@ -118,7 +118,7 @@ class BaseTerminal:
                         try:
                             command.validate(arguments)
                             command.run()
-                        except ValueError as e:
+                        except (ValueError, MemoryError) as e:
                             self.log(e, prefix=False)
                         finally:
                             command.reset()
