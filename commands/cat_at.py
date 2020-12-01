@@ -55,37 +55,6 @@ class CatAtCommand(BaseCommand):
                     sector, data=sector.data,
                     order=end_order, file_id=sector.file_id)
 
-    def read_from_file(self, file, index, size):
-        file_size = FileDao.get_file_size(file)
-        if (index >= file_size):
-            raise ValueError(
-                'Index larger than content in file!')
-        # The sector from which data is to be read
-        start_read_sector_order = ceil((index + 1) / SECTOR_SIZE)
-        start_read_sector = [
-            sector for sector in
-            file.sectors if sector.order == start_read_sector_order][0]
-
-        # The remaining sectors to be read
-        end_sectors = [
-            sector for sector in file.sectors
-            if sector.order > start_read_sector_order
-        ]
-        # Sorting the remaining sectors by order
-        end_sectors.sort(key=lambda sector: sector.order)
-
-        # Read content of the sector from the specified index
-        start_read_sector_data = start_read_sector.data
-        start_index = index % SECTOR_SIZE
-        content = start_read_sector_data[start_index:]
-
-        # Read the content till the size specified
-        count = 0
-        while (size < len(content)) and (count < len(end_sectors)):
-            content += end_sectors[count].data
-            count += 1
-        return content[:size]
-
     def run(self):
         index = self.arguments[0].data
         path = self.arguments[1].data
@@ -97,5 +66,5 @@ class CatAtCommand(BaseCommand):
 
         else:
             size = int(self.get_input('Total size to read:', prefix=False))
-            content = self.read_from_file(file, index, size)
+            content = FileDao.read_from_file(file, index, size)
             self.log(content, prefix=False)

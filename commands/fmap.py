@@ -2,7 +2,7 @@ from db.dao.file_dao import FileDao
 from base.command import BaseCommand
 
 
-class fmapCommand(BaseCommand):
+class FMapCommand(BaseCommand):
     command = 'fmap'
 
     def run(self):

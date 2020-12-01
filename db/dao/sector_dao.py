@@ -34,7 +34,8 @@ class SectorDao:
         """
         return DB().session.query(Sector).filter_by(
             data=None
-        ).first()
+        ).union(DB().session.query(Sector).filter_by(data='')
+                ).first()
 
     @staticmethod
     def insert_sector_data(sector, data=None, order=0,
@@ -68,7 +69,8 @@ class SectorDao:
         """
         return len(DB().session.query(Sector).filter_by(
             data=None
-        ).all())
+        ).union(DB().session.query(Sector).filter_by(data='')
+                ).all())
 
     @staticmethod
     def is_memory_full():

@@ -13,7 +13,7 @@ from commands.cat_at import CatAtCommand
 from commands.rm import RmCommand
 from commands.mv import MvCommand
 from commands.pwd import PWDcommand
-from commands.fmap import fmapCommand
+from commands.fmap import FMapCommand
 
 from db.db import DB
 
@@ -25,7 +25,7 @@ def main():
 
     terminal = BaseTerminal(commands=[
         PingCommand, CDCommand, MkDirCommand, LSCommand, PWDcommand,
-        TouchCommand, CatEndCommand, CatCommand, fmapCommand,
+        TouchCommand, CatEndCommand, CatCommand, FMapCommand,
         CatAtCommand, RmCommand, MvCommand])
     terminal.run()
 

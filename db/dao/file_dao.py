@@ -4,6 +4,7 @@ from db.base import SECTOR_SIZE
 from db.dao.sector_dao import SectorDao
 from db.db import DB
 from db.models.file import File
+from math import ceil
 import re
 
 
@@ -44,7 +45,7 @@ class FileDao:
             order += 1
             sector = SectorDao.get_first_unused_sector()
             SectorDao.insert_sector_data(
-                sector, div, order, file.id)
+                sector, data=div, order=order, file_id=file.id)
         return order
 
     @staticmethod
@@ -149,3 +150,50 @@ class FileDao:
             return 0
         sector_orders = map(lambda sector: len(sector.data), file.sectors)
         return sum(sector_orders)
+
+    @staticmethod
+    def read_from_file(file, index=0, size=None):
+        if file.is_empty:
+            raise ValueError('File is empty! No contents to show')
+        file_size = FileDao.get_file_size(file)
+        if size is None:
+            size = file_size
+
+        if index == 0:
+            content = ''
+            file_sectors = file.sectors
+            file_sectors.sort(key=lambda sector: sector.order)
+            content = ''
+            for sector in file_sectors:
+                content += sector.data
+        else:
+            if (index >= file_size):
+                raise ValueError(
+                    'Index larger than content in file!')
+            # The sector from which data is to be read
+            start_read_sector_order = ceil((index + 1) / SECTOR_SIZE)
+            start_read_sector = [
+                sector for sector in
+                file.sectors if sector.order == start_read_sector_order][0]
+
+            # The remaining sectors to be read
+            end_sectors = [
+                sector for sector in file.sectors
+                if sector.order > start_read_sector_order
+            ]
+
+            # Read content of the sector from the specified index
+            start_read_sector_data = start_read_sector.data
+            start_index = index % SECTOR_SIZE
+            content = start_read_sector_data[start_index:]
+
+            # Sorting the remaining sectors by order
+            end_sectors.sort(key=lambda sector: sector.order)
+
+            # Read the content till the size specified
+            count = 0
+            while (size < len(content)) and (count < len(end_sectors)):
+                content += end_sectors[count].data
+                count += 1
+
+        return content[:size]
