@@ -18,7 +18,7 @@ class FMapCommand(BaseCommand):
 
             # Printing memory specs for all files
             for file in files:
-                path = FileDao.get_path_of_file(file)
+                path = FileDao.get_path(file)
                 sectors = file.sectors
                 map = format_string.format(
                     file.id, FileDao.get_file_size(file),

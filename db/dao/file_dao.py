@@ -123,8 +123,13 @@ class FileDao:
         return DB().session.query(File).all()
 
     @staticmethod
-    def get_path_of_file(file):
-        current = DB().session.query(Directory).get(file.directory_id)
+    def get_path(obj):
+        isFile = isinstance(obj, File)
+        if isFile:
+            current = DB().session.query(Directory).get(obj.directory_id)
+        else:
+            current = obj.context.current_directory
+
         path = str(current)
         root = DirectoryDao.get_root_directory()
         restore = current
@@ -134,7 +139,7 @@ class FileDao:
             path = str_parent+'/'+path
             current = parent
         current = restore
-        path = path+'/'+file.name
+        path = path+'/' + (obj.name if isFile else '')
         return path
 
     @staticmethod
