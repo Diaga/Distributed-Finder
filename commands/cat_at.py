@@ -10,13 +10,13 @@ from math import ceil
 class CatAtCommand(BaseCommand):
     """Without -w option, cat-at reads the content which starts at the
     specified index with a specific size (which is taken as a separate
-    input). 
+    input).
     With the -w option, it appends the content that is logged
     by the user separately at the specified index.
 
     Usage: cat-at <index> <fileName>
     cat-at -w <index> <fileName>"""
-    
+
     command = 'cat-at'
     arguments = [IntArgument(),  StringArgument()]
     options = [StringOption('-w')]

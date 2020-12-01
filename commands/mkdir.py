@@ -10,7 +10,7 @@ class MkDirCommand(BaseCommand):
         user presently exists in.
 
         Usage: mkdir dir_1"""
-        
+
     command = 'mkdir'
     arguments = [StringArgument()]
 

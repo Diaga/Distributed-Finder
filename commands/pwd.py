@@ -5,9 +5,9 @@ from base.command import BaseCommand
 class PWDcommand(BaseCommand):
     """Returns the location of the present working directory,
         user current;y is residing in the file management system.
-        
+
         Usage: pwd"""
-        
+
     command = 'pwd'
 
     def run(self):

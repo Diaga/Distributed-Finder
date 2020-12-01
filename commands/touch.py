@@ -11,7 +11,7 @@ class TouchCommand(BaseCommand):
         avoiding duplication in file/directory names.
 
         Usage: touch <file_name> """
-        
+
     command = 'touch'
     arguments = [StringArgument()]
 

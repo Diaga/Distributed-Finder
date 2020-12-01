@@ -11,7 +11,7 @@ class CatEndCommand(BaseCommand):
         this command prompts the user to input the text,
         by displaying "Start Writing: ". Whatever is entered
         is appended to the <filename>."""
-        
+
     command = 'cat-end'
     arguments = [StringArgument()]
 

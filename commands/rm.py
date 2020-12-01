@@ -17,7 +17,7 @@ class RmCommand(BaseCommand):
 
         Usage: rm <file_name>
         rm -rf <directory_name>"""
-        
+
     command = 'rm'
     arguments = [StringArgument()]
     options = [StringOption('-rf')]

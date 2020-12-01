@@ -9,7 +9,7 @@ class LSCommand(BaseCommand):
         exist in the directory user currently resides in.
 
         Usage: ls"""
-        
+
     command = 'ls'
 
     def run(self):
