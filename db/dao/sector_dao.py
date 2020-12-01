@@ -33,23 +33,22 @@ class SectorDao:
         """ Returns the first available sector
         """
         return DB().session.query(Sector).filter_by(
-            is_used=False
-        ).first()
+            data=None
+        ).union(DB().session.query(Sector).filter_by(data='')
+                ).first()
 
     @staticmethod
     def insert_sector_data(sector, data=None, order=0,
-                           is_used=False, file_id=None):
+                           file_id=None):
         """ Inserts the values in an already created sector
         record
         :param sector: Sector object model to be manipulated
         :param data: Specifies the data to be inserted
-        :param is_used: Specifies whether sector is empty
         :param file_id: Specifies the id of the file linked
         with this sector
         """
         sector.data = data
         sector.order = order
-        sector.is_used = is_used
         sector.file_id = file_id
         DB().session.commit()
 
@@ -69,8 +68,9 @@ class SectorDao:
         Returns the total count of available sectors
         """
         return len(DB().session.query(Sector).filter_by(
-            is_used=False
-        ).all())
+            data=None
+        ).union(DB().session.query(Sector).filter_by(data='')
+                ).all())
 
     @staticmethod
     def is_memory_full():

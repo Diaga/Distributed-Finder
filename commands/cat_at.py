@@ -1,22 +1,19 @@
+from base.option import StringOption
 from base.command import BaseCommand
 from base.arguments import IntArgument, StringArgument
 from db.dao.file_dao import FileDao
 from db.dao.sector_dao import SectorDao
-from db.base import sector_size
+from db.base import SECTOR_SIZE
 from math import ceil
 
 
 class CatAtCommand(BaseCommand):
     command = 'cat-at'
-    arguments = [IntArgument(), StringArgument()]
+    arguments = [IntArgument(),  StringArgument()]
+    options = [StringOption('-w')]
 
-    def run(self):
-        index = self.arguments[0].data
-        path = self.arguments[1].data
-        file = self.context.parse(path, True)
-
+    def write_to_file(self, file, index, text):
         file_size = FileDao.get_file_size(file)
-        text = self.get_input('Start Writing: ', prefix=False)
         # If index is larger than the end of the file
         # Append data at the end of the file
         if (index >= file_size):
@@ -24,7 +21,7 @@ class CatAtCommand(BaseCommand):
 
         else:
             # The sector in which data is to be manipulated
-            start_append_sector_order = ceil((index + 1) / sector_size())
+            start_append_sector_order = ceil((index + 1) / SECTOR_SIZE)
             start_append_sector = [
                 sector for sector in
                 file.sectors if sector.order == start_append_sector_order][0]
@@ -39,7 +36,7 @@ class CatAtCommand(BaseCommand):
             # Concatenating with the provided input at the
             # specified index
             start_append_sector_data = start_append_sector.data
-            start_index = index % sector_size()
+            start_index = index % SECTOR_SIZE
             text = start_append_sector_data[0:start_index] + \
                 text + start_append_sector_data[start_index:]
 
@@ -54,4 +51,20 @@ class CatAtCommand(BaseCommand):
             end_order = last_append_sector_order
             for sector in end_sectors:
                 end_order += 1
-                sector.order = end_order
+                SectorDao.insert_sector_data(
+                    sector, data=sector.data,
+                    order=end_order, file_id=sector.file_id)
+
+    def run(self):
+        index = self.arguments[0].data
+        path = self.arguments[1].data
+        file = self.context.parse(path, True)
+
+        if self.options[0].exists:
+            text = self.get_input('Start Writing: ', prefix=False)
+            self.write_to_file(file, index, text)
+
+        else:
+            size = int(self.get_input('Total size to read:', prefix=False))
+            content = FileDao.read_from_file(file, index, size)
+            self.log(content, prefix=False)
