@@ -118,7 +118,7 @@ class BaseTerminal:
                         try:
                             command.validate(arguments)
                             command.run()
-                        except ValueError as e:
+                        except (ValueError, MemoryError) as e:
                             self.log(e, prefix=False)
                         finally:
                             command.reset()
