@@ -96,7 +96,7 @@ class FileDao:
         """Returns true if file is unique within the
         directory
         :param current_directory: Directory model object
-         specifying current directory
+        specifying current directory
         :param filename: String specifying filename to be
         validated
         """
@@ -111,7 +111,7 @@ class FileDao:
     @staticmethod
     def is_valid_filename(filename):
         """Returns true if filename does not start with
-         a special char and does not contain \\ /
+        a special char and does not contain \\ /
         :param filename: String specifying filename
         to be validated
         """

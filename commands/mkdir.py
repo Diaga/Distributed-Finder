@@ -6,6 +6,11 @@ from db.dao.directory_dao import DirectoryDao
 
 
 class MkDirCommand(BaseCommand):
+    """Used to make a new directory inside the directory
+        user presently exists in.
+
+        Usage: mkdir dir_1"""
+
     command = 'mkdir'
     arguments = [StringArgument()]
 

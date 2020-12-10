@@ -49,7 +49,7 @@ class DirectoryDao:
     def get_directories_from_current_directory(current_directory):
         """Returns all directories inside a current directory
         :param current_directory: Directory model object
-         specifying current directory
+        specifying current directory
         """
         return DB().session.query(Directory).filter_by(
             directory_id=current_directory.id
@@ -59,7 +59,7 @@ class DirectoryDao:
     def get_directory_from_current_directory(current_directory,
                                              directory_name):
         """Returns directory model object from current directory
-         with directory_name
+        with directory_name
         :param current_directory: Current directory to search for
         :param directory_name: Directory name to search for
         """
@@ -79,11 +79,10 @@ class DirectoryDao:
 
     @staticmethod
     def is_unique_direname(dirname, current_directory):
-        """Returns true if directory is unique within the
-        directory
+        """Returns true if directory is unique within the directory
         :param current_directory: Directory model object
-         specifying current directory
-        :param filename: String specifying filename to be
+        specifying current directory
+        :param dirname: String specifying dirname to be
         validated
         """
         directories = DirectoryDao.get_directories_from_current_directory(
