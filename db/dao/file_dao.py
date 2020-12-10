@@ -181,7 +181,7 @@ class FileDao:
                 sector for sector in
                 file.sectors if sector.order == start_read_sector_order][0]
 
-            # The remaining sectors to be read
+            # The remaining sectors to be readl
             end_sectors = [
                 sector for sector in file.sectors
                 if sector.order > start_read_sector_order
@@ -197,7 +197,7 @@ class FileDao:
 
             # Read the content till the size specified
             count = 0
-            while (size < len(content)) and (count < len(end_sectors)):
+            while (count < len(end_sectors)):
                 content += end_sectors[count].data
                 count += 1
 
