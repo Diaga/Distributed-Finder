@@ -41,6 +41,8 @@ class CatAtCommand(BaseCommand):
                 if sector.order > start_append_sector_order
             ]
 
+            end_sectors.sort(key=lambda sector: sector.order)
+
             # Taking the data out of the sector and
             # Concatenating with the provided input at the
             # specified index
@@ -50,7 +52,7 @@ class CatAtCommand(BaseCommand):
                 text + start_append_sector_data[start_index:]
 
             # Removing the sector data which was manipulated
-            SectorDao.insert_sector_data(start_append_sector)
+            SectorDao.insert_sector_data(sector=start_append_sector)
 
             # Inserting the provided data
             last_append_sector_order = FileDao.insert_data_in_file(
