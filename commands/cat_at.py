@@ -68,16 +68,17 @@ class CatAtCommand(BaseCommand):
                     sector, data=sector.data,
                     order=end_order, file_id=sector.file_id)
 
-    def run(self):
+    def run(self, *args, **kwargs):
         index = self.arguments[0].data
         path = self.arguments[1].data
         file = self.context.parse(path, True)
 
         if self.options[0].exists:
-            text = self.get_input('Start Writing: ', prefix=False)
+            text = kwargs.get('text', None) or \
+                   self.get_input('Start Writing: ', prefix=False)
             self.write_to_file(file, index, text)
-
         else:
-            size = int(self.get_input('Total size to read:', prefix=False))
+            size = kwargs.get('size', None) or \
+                   int(self.get_input('Total size to read:', prefix=False))
             content = FileDao.read_from_file(file, index, size)
             self.log(content, prefix=False)

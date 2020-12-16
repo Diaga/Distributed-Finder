@@ -1,3 +1,5 @@
+import threading
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session as SQLSession
 
@@ -7,6 +9,9 @@ from .models.directory import Directory # noqa
 from .models.file import File # noqa
 from .models.session import Session # noqa
 from .models.sector import Sector  # noqa
+
+
+CONNECTION_POOL = {}
 
 
 class DB:
@@ -19,12 +24,25 @@ class DB:
         :param db_path: Path to sqlite database
         """
         self._engine = create_engine(f'sqlite:///{db_path}')
-        self.session = SQLSession(self._engine)
         Base.metadata.create_all(self._engine)
+
+        self.session = SQLSession(self._engine)
 
     def __new__(cls):
         """Singleton constructor for DB connection"""
-        if cls._db is None:
-            cls._db = super(DB, cls).__new__(cls)
+        if threading.current_thread() is threading.main_thread():
+            if cls._db is None:
+                cls._db = super(DB, cls).__new__(cls)
 
-        return cls._db
+            return cls._db
+        else:
+            db = CONNECTION_POOL.get(threading.current_thread().name, None)
+            if db is None:
+                db = super(DB, cls).__new__(cls)
+                db.connect('finder.db')
+            else:
+                db.session.close()
+                db.connect('finder.db')
+            CONNECTION_POOL[threading.current_thread().name] = db
+
+            return db
