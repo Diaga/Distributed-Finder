@@ -187,17 +187,17 @@ class FileDao:
                 if sector.order > start_read_sector_order
             ]
 
+            # Sorting the remaining sectors by order
+            end_sectors.sort(key=lambda sector: sector.order)
+
             # Read content of the sector from the specified index
             start_read_sector_data = start_read_sector.data
             start_index = index % SECTOR_SIZE
             content = start_read_sector_data[start_index:]
 
-            # Sorting the remaining sectors by order
-            end_sectors.sort(key=lambda sector: sector.order)
-
             # Read the content till the size specified
             count = 0
-            while (count < len(end_sectors)):
+            while count < len(end_sectors):
                 content += end_sectors[count].data
                 count += 1
 

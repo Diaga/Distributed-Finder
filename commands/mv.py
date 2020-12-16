@@ -29,5 +29,8 @@ class MvCommand(BaseCommand):
 
         target_dir = self.context.parse(self.arguments[1].data)
 
+        if self.arguments[0].data == self.arguments[1].data:
+            raise ValueError('You cannot move source to the same target')
+
         to_be_moved.directory_id = target_dir.id
         DB().session.commit()

@@ -21,11 +21,13 @@ class CatAtCommand(BaseCommand):
     arguments = [IntArgument(),  StringArgument()]
     options = [StringOption('-w')]
 
+    aliases = ['cat_at', ]
+
     def write_to_file(self, file, index, text):
         file_size = FileDao.get_file_size(file)
         # If index is larger than the end of the file
         # Append data at the end of the file
-        if (index >= file_size):
+        if index >= file_size:
             FileDao.insert_data_in_file(file, text)
 
         else:
