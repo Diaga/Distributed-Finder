@@ -4,7 +4,7 @@ from base.command import BaseCommand
 
 class PWDcommand(BaseCommand):
     """Returns the location of the present working directory,
-        user current;y is residing in the file management system.
+        user currently is residing in the file management system.
 
         Usage: pwd"""
 
@@ -12,4 +12,4 @@ class PWDcommand(BaseCommand):
 
     def run(self):
         path = FileDao.get_path(self)
-        self.log(path)
+        self.log(path, prefix=False)

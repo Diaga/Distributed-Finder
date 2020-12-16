@@ -35,7 +35,7 @@ class LSCommand(BaseCommand):
                 self.context.current_directory)
         file_list = FileDao.get_files_from_current_directory(
             self.context.current_directory)
-        self.log('Directories: ')
+        self.log('Directories: ', prefix=False)
         display_lists(dir_list)
         self.log('Files: ', prefix=False)
         display_lists(file_list)

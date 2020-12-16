@@ -63,6 +63,7 @@ class DirectoryDao:
         :param current_directory: Current directory to search for
         :param directory_name: Directory name to search for
         """
+        #
         return DB().session.query(Directory).filter_by(
             directory_id=current_directory.id, name=directory_name
         ).first()
