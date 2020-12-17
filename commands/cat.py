@@ -25,7 +25,7 @@ class CatCommand(BaseCommand):
 
         if self.options[0].exists:
             self.log('Warning: Data will be overwritten', prefix=False)
-            text = kwargs.get('text', None) or self.get_input(
+            text = next(iter(args), None) or self.get_input(
                 'Start Writing: ', prefix=False)
             self.write_to_file(file, text)
         else:

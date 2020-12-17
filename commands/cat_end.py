@@ -18,6 +18,6 @@ class CatEndCommand(BaseCommand):
     def run(self, *args, **kwargs):
         path = self.arguments[0].data
         file = self.context.parse(path, True)
-        text = kwargs.get('text', None) or self.get_input(
+        text = next(iter(args), None) or self.get_input(
             'Start Writing: ', prefix=False)
         FileDao.insert_data_in_file(file, text)

@@ -27,6 +27,7 @@ class DB:
         Base.metadata.create_all(self._engine)
 
         self.session = SQLSession(self._engine)
+        self.session.expire_on_commit = False
 
     def __new__(cls):
         """Singleton constructor for DB connection"""
@@ -39,9 +40,6 @@ class DB:
             db = CONNECTION_POOL.get(threading.current_thread().name, None)
             if db is None:
                 db = super(DB, cls).__new__(cls)
-                db.connect('finder.db')
-            else:
-                db.session.close()
                 db.connect('finder.db')
             CONNECTION_POOL[threading.current_thread().name] = db
 

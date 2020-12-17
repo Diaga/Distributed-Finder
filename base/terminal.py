@@ -125,16 +125,17 @@ class BaseTerminal:
         :param user_input: Input to match
         :returns Matched command or None
         """
-        user_input_list = user_input.strip().split(' ')
+        inputs = user_input.strip().split('|')
+        user_input_list = inputs[0].strip().split(' ')
         if len(user_input_list) >= 1:
             command_input = user_input_list[0]
             arguments = user_input_list[1:]
 
             for command in self.commands:
                 if command.match(command_input):
-                    return command, arguments, True
+                    return command, arguments, True, inputs[1:]
 
-            return command_input, None, False
+            return command_input, None, False, inputs[1:]
 
     def sansio_run(self, command, arguments, found=False):
         """Separate IO from run logic
@@ -172,5 +173,5 @@ class BaseTerminal:
         while True:
             user_input = self.get_input()
 
-            command, arguments, found = self.match_command(user_input)
+            command, arguments, found, _ = self.match_command(user_input)
             self.sansio_run(command, arguments, found)

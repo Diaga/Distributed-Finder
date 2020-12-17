@@ -74,11 +74,11 @@ class CatAtCommand(BaseCommand):
         file = self.context.parse(path, True)
 
         if self.options[0].exists:
-            text = kwargs.get('text', None) or \
+            text = next(iter(args), None) or \
                    self.get_input('Start Writing: ', prefix=False)
             self.write_to_file(file, index, text)
         else:
-            size = kwargs.get('size', None) or \
+            size = next(iter(args), None) or \
                    int(self.get_input('Total size to read:', prefix=False))
             content = FileDao.read_from_file(file, index, size)
             self.log(content, prefix=False)

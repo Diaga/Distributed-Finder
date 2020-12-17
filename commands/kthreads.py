@@ -22,14 +22,18 @@ class KThreadsCommand(BaseCommand):
         with open(output_file, 'w') as out_f:
             with open(input_file, 'r') as in_f:
                 for line in in_f.readlines():
-                    command, arguments, found = self.context.\
+                    command, arguments, found, inputs = self.context.\
                         terminal.match_command(line)
                     if found:
-                        command.log = partial(self.log, stdout=out_f)
+                        command = command.__class__(
+                            context=command.context,
+                            log=partial(self.log, stdout=out_f),
+                            get_input=command.get_input
+                        )
 
                         try:
                             command.validate(arguments)
-                            command.run()
+                            command.run(*inputs)
                         except (ValueError, MemoryError) as e:
                             command.log(e, prefix=False)
                         finally:
