@@ -3,6 +3,11 @@ from base.command import BaseCommand
 
 
 class FMapCommand(BaseCommand):
+    """Displays the whole memory map. Outputting the details
+        of all files existing on the system.
+
+        Usage: fmap """
+
     command = 'fmap'
 
     def run(self):
