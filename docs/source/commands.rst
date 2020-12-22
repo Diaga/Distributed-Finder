@@ -31,6 +31,27 @@ commands.cd command
   :members:
   :noindex:
 
+commands.fmap
+--------------------
+
+.. automodule:: commands.fmap
+   :members:
+   :noindex:
+
+commands.hello
+---------------------
+
+.. automodule:: commands.hello
+   :members:
+   :noindex:
+
+commands.kthreads
+------------------------
+
+.. automodule:: commands.kthreads
+   :members:
+   :noindex:
+
 commands.ls command
 -------------------
 
