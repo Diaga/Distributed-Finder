@@ -15,8 +15,9 @@ class CatEndCommand(BaseCommand):
     command = 'cat-end'
     arguments = [StringArgument()]
 
-    def run(self):
+    def run(self, *args, **kwargs):
         path = self.arguments[0].data
         file = self.context.parse(path, True)
-        text = self.get_input('Start Writing: ', prefix=False)
+        text = next(iter(args), None) or self.get_input(
+            'Start Writing: ', prefix=False)
         FileDao.insert_data_in_file(file, text)

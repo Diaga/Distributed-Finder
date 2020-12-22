@@ -90,5 +90,8 @@ class BaseCommand(ABC):
         for option in self.options:
             option.reset()
 
-    def run(self):
+    def run(self, *args, **kwargs):
+        """
+        .. versionchanged: Lab10: Accepts arguments and keyword arguments
+        """
         pass
