@@ -31,21 +31,21 @@ commands.cd command
   :members:
   :noindex:
 
-commands.fmap module
+commands.fmap
 --------------------
 
 .. automodule:: commands.fmap
    :members:
    :noindex:
 
-commands.hello module
+commands.hello
 ---------------------
 
 .. automodule:: commands.hello
    :members:
    :noindex:
 
-commands.kthreads module
+commands.kthreads
 ------------------------
 
 .. automodule:: commands.kthreads
