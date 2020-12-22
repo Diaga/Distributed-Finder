@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>base package &#8212; Distributed Finder v0.1 documentation</title>
+    <title>base package &#8212; Distributed Finder Lab 9 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/flask.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="modules.html" title="Distributed-Finder"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Distributed Finder v0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Distributed Finder Lab 9 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../user_guide.html" >User Guide</a> &#187;</li>
           <li class="nav-item nav-item-2"><a href="modules.html" accesskey="U">Distributed-Finder</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">base package</a></li> 
@@ -153,7 +153,7 @@ Command Signature: &lt;command&gt; &lt;arg1&gt; &lt;arg2&gt; …</p>
 
 <dl class="py method">
 <dt id="base.command.BaseCommand.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.command.BaseCommand.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.command.BaseCommand.run" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -198,9 +198,10 @@ Command Signature: &lt;command&gt; &lt;arg1&gt; &lt;arg2&gt; …</p>
 <p>Handles the user input and handles matching commands</p>
 <dl class="py class">
 <dt id="base.terminal.BaseTerminal.Context">
-<em class="property">class </em><code class="sig-name descname">Context</code><a class="headerlink" href="#base.terminal.BaseTerminal.Context" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-name descname">Context</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">terminal</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.Context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Holds the context for finder terminal</p>
+<p>manager, allow context to access terminal using <cite>terminal</cite> property</p>
 <dl class="py method">
 <dt id="base.terminal.BaseTerminal.Context.parse">
 <code class="sig-name descname">parse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">is_file</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.Context.parse" title="Permalink to this definition">¶</a></dt>
@@ -210,12 +211,18 @@ Command Signature: &lt;command&gt; &lt;arg1&gt; &lt;arg2&gt; …</p>
 directory</p>
 </dd></dl>
 
+<dl class="py method">
+<dt id="base.terminal.BaseTerminal.Context.set_stdout">
+<em class="property">static </em><code class="sig-name descname">set_stdout</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_handler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.Context.set_stdout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py method">
 <dt id="base.terminal.BaseTerminal.get_input">
 <code class="sig-name descname">get_input</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prompt</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">prefix</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.get_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper around input() to have a terminal like appearance</p>
+<p>do nothing</p>
 </dd></dl>
 
 <dl class="py method">
@@ -225,14 +232,41 @@ directory</p>
 
 <dl class="py method">
 <dt id="base.terminal.BaseTerminal.log">
-<code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em>, <em class="sig-param"><span class="n">prefix</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.log" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em>, <em class="sig-param"><span class="n">prefix</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">stdout</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.log" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints message to console with specified prefix</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.terminal.BaseTerminal.match_command">
+<code class="sig-name descname">match_command</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.match_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Matches command input to one of the existing commands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user_input</strong> – Input to match</p>
+</dd>
+</dl>
+<p>:returns Matched command or None</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="base.terminal.BaseTerminal.run">
 <code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs the terminal in loop</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.terminal.BaseTerminal.sansio_run">
+<code class="sig-name descname">sansio_run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">command</span></em>, <em class="sig-param"><span class="n">arguments</span></em>, <em class="sig-param"><span class="n">found</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.terminal.BaseTerminal.sansio_run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Separate IO from run logic</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>command</strong> – Command to execute</p></li>
+<li><p><strong>arguments</strong> – Arguments to pass to command</p></li>
+<li><p><strong>found</strong> – Whether command was found or error</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

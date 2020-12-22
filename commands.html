@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Available Commands &#8212; Distributed Finder v0.1 documentation</title>
+    <title>Available Commands &#8212; Distributed Finder Lab 9 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/flask.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -36,7 +36,7 @@
         <li class="right" >
           <a href="user_guide.html" title="User Guide"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">Distributed Finder v0.1 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Distributed Finder Lab 9 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="user_guide.html" accesskey="U">User Guide</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Available Commands</a></li> 
       </ul>
@@ -57,6 +57,11 @@
 <dd><p>Prints the file to terminal. If ‘-w’ option is specified, the cat command
 prompts the user for input and overwrites the file with that input.</p>
 <p>Usage: cat [OPTIONS] &lt;path_to_file&gt;</p>
+<dl class="py method">
+<dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -72,6 +77,11 @@ With the -w option, it appends the content that is logged
 by the user separately at the specified index.</p>
 <p>Usage: cat-at &lt;index&gt; &lt;fileName&gt;
 cat-at -w &lt;index&gt; &lt;fileName&gt;</p>
+<dl class="py method">
+<dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -85,6 +95,11 @@ cat-at -w &lt;index&gt; &lt;fileName&gt;</p>
 <p>this command prompts the user to input the text,
 by displaying “Start Writing: “. Whatever is entered
 is appended to the &lt;filename&gt;.</p>
+<dl class="py method">
+<dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -96,6 +111,11 @@ is appended to the &lt;filename&gt;.</p>
 <dd><p>Used to change the directory in which the user resides in,
 to one of the constituents directories.</p>
 <p>Usage: cd &lt;directory_name&gt;</p>
+<dl class="py method">
+<dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -107,6 +127,11 @@ to one of the constituents directories.</p>
 <dd><p>Print out the files and directories that presently
 exist in the directory user currently resides in.</p>
 <p>Usage: ls</p>
+<dl class="py method">
+<dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -118,6 +143,11 @@ exist in the directory user currently resides in.</p>
 <dd><p>Used to make a new directory inside the directory
 user presently exists in.</p>
 <p>Usage: mkdir dir_1</p>
+<dl class="py method">
+<dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -131,6 +161,11 @@ Raises an error if the file/directory to be moved does not exist.</p>
 <p>Usage: mv &lt;filename1&gt; &lt;targetDirectory&gt;</p>
 <p>above command moves filename1 (either a file or a directory)
 to the targetDirectory.</p>
+<dl class="py method">
+<dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -139,7 +174,12 @@ to the targetDirectory.</p>
 <dl class="py class">
 <dt>
 <em class="property">class </em><code class="sig-prename descclassname">commands.ping.</code><code class="sig-name descname">PingCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">context</span></em>, <em class="sig-param"><span class="n">log</span></em>, <em class="sig-param"><span class="n">get_input</span></em><span class="sig-paren">)</span></dt>
+<dd><dl class="py method">
+<dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd></dd></dl>
+
+</dd></dl>
 
 </div>
 <div class="section" id="commands-pwd-module">
@@ -150,6 +190,11 @@ to the targetDirectory.</p>
 <dd><p>Returns the location of the present working directory,
 user currently is residing in the file management system.</p>
 <p>Usage: pwd</p>
+<dl class="py method">
+<dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -172,6 +217,11 @@ rm -rf &lt;directory_name&gt;</p>
 :param directory: Directory model object to search</p>
 </dd></dl>
 
+<dl class="py method">
+<dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
@@ -184,6 +234,11 @@ rm -rf &lt;directory_name&gt;</p>
 Checks for the validity of the file name as well,
 avoiding duplication in file/directory names.</p>
 <p>Usage: touch &lt;file_name&gt;</p>
+<dl class="py method">
+<dt>
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
