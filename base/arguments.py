@@ -42,6 +42,11 @@ class BaseArgument(ABC):
         else:
             raise ValueError('Call validate() before accessing argument data')
 
+    @data.setter
+    def data(self, data):
+        self.has_validated = True
+        self._data = data
+
     def validate(self, user_input, options=None):
         self._validate(user_input, options=options)
 

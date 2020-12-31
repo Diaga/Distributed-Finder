@@ -21,11 +21,13 @@ class CatAtCommand(BaseCommand):
     arguments = [IntArgument(),  StringArgument()]
     options = [StringOption('-w')]
 
+    aliases = ['cat_at', ]
+
     def write_to_file(self, file, index, text):
         file_size = FileDao.get_file_size(file)
         # If index is larger than the end of the file
         # Append data at the end of the file
-        if (index >= file_size):
+        if index >= file_size:
             FileDao.insert_data_in_file(file, text)
 
         else:
@@ -40,6 +42,8 @@ class CatAtCommand(BaseCommand):
                 sector for sector in file.sectors
                 if sector.order > start_append_sector_order
             ]
+
+            end_sectors.sort(key=lambda sector: sector.order)
 
             # Taking the data out of the sector and
             # Concatenating with the provided input at the
@@ -64,16 +68,17 @@ class CatAtCommand(BaseCommand):
                     sector, data=sector.data,
                     order=end_order, file_id=sector.file_id)
 
-    def run(self):
+    def run(self, *args, **kwargs):
         index = self.arguments[0].data
         path = self.arguments[1].data
         file = self.context.parse(path, True)
 
         if self.options[0].exists:
-            text = self.get_input('Start Writing: ', prefix=False)
+            text = next(iter(args), None) or \
+                   self.get_input('Start Writing: ', prefix=False)
             self.write_to_file(file, index, text)
-
         else:
-            size = int(self.get_input('Total size to read:', prefix=False))
+            size = next(iter(args), None) or \
+                   int(self.get_input('Total size to read:', prefix=False))
             content = FileDao.read_from_file(file, index, size)
             self.log(content, prefix=False)

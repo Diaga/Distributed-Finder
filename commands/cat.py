@@ -19,13 +19,14 @@ class CatCommand(BaseCommand):
         FileDao.remove_data_in_file(file)
         FileDao.insert_data_in_file(file, text)
 
-    def run(self):
+    def run(self, *args, **kwargs):
         path = self.arguments[0].data
         file = self.context.parse(path, True)
 
         if self.options[0].exists:
             self.log('Warning: Data will be overwritten', prefix=False)
-            text = self.get_input('Start Writing: ', prefix=False)
+            text = next(iter(args), None) or self.get_input(
+                'Start Writing: ', prefix=False)
             self.write_to_file(file, text)
         else:
             content = FileDao.read_from_file(file)
