@@ -11,8 +11,11 @@ class FMapCommand(BaseCommand):
     command = 'fmap'
 
     def run(self):
+        """
+        .. versionchanged: Lab 10: Rename map to f_map to avoid shadowing
+        """
         files = FileDao.get_all_files()
-        if (len(files) != 0):
+        if len(files) != 0:
             format_string = '{:<38} {:<7} {:<23} {:<40} {:<8}'
             # Printing the header
             self.log('', prefix=False)
@@ -25,11 +28,11 @@ class FMapCommand(BaseCommand):
             for file in files:
                 path = FileDao.get_path(file)
                 sectors = file.sectors
-                map = format_string.format(
+                f_map = format_string.format(
                     file.id, FileDao.get_file_size(file),
                     path, '' if file.is_empty else sectors[0].id,
                     '' if file.is_empty else sectors[0].order)
-                self.log(map, prefix=False)
+                self.log(f_map, prefix=False)
                 for sector in sectors:
                     if sector == sectors[0]:
                         continue

@@ -36,6 +36,30 @@ commands.cd module
    :undoc-members:
    :show-inheritance:
 
+commands.fmap module
+--------------------
+
+.. automodule:: commands.fmap
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+commands.hello module
+---------------------
+
+.. automodule:: commands.hello
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+commands.kthreads module
+------------------------
+
+.. automodule:: commands.kthreads
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 commands.ls module
 ------------------
 
