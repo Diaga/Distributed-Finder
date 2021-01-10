@@ -19,16 +19,19 @@ from commands.kthreads import KThreadsCommand
 
 from db.db import DB
 
+DEFAULT_COMMANDS = [
+        PingCommand, CDCommand, MkDirCommand, LSCommand, PWDcommand,
+        TouchCommand, CatEndCommand, CatCommand, FMapCommand,
+        CatAtCommand, RmCommand, MvCommand, HelloCommand, KThreadsCommand
+]
+
 
 def main():
     """Start Finder Terminal and create connection to DB"""
     db = DB()
     db.connect(os.path.join(os.getcwd(), 'finder.db'))
 
-    terminal = BaseTerminal(commands=[
-        PingCommand, CDCommand, MkDirCommand, LSCommand, PWDcommand,
-        TouchCommand, CatEndCommand, CatCommand, FMapCommand,
-        CatAtCommand, RmCommand, MvCommand, HelloCommand, KThreadsCommand])
+    terminal = BaseTerminal(commands=DEFAULT_COMMANDS)
     terminal.run()
 
 

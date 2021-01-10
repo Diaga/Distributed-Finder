@@ -1,91 +1,90 @@
+import sys
 import socket
-import json
-from threading import Thread
-import threading
 
-BUFF = 1024
-PORT = 95
-ACTIVE_CONNECTIONS_POOL = []
-THREADS = []
+from main import DEFAULT_COMMANDS
+from base.terminal import BaseTerminal
+from base.connection import Server, ClientConnection, Status, \
+    message_builder, message_decompose, Action
 
 
-def client_thread(client_connection, client_address):
-    user_id = None
-    thread_id = threading.get_ident()
-    while True:
-        data = json.loads(client_connection.recv(
-            BUFF).decode().replace("\'", "\""))
-        if not data:
-            break
-        # AUTH ACTION
-        if data['action'] == 'AUTH':
-            user_id = data['payload']['user_id'] + str(thread_id)
-            ACTIVE_CONNECTIONS_POOL.append(user_id)
-            print('Connection:', str(client_address), 'UserID:', user_id)
-            client_connection.send(
-                str(
-                    {'action': 'AUTH', 'payload': {'user_id': user_id}}
-                    ).encode())
-            client_connection.send(
-                str(
-                    {'action': 'INPUT', 'payload': {'message': 'prefix: '}}
-                    ).encode())
-        # INPUT ACTION
-        elif data['action'] == 'INPUT' and user_id is not None:
-            user_input = data['payload']['message']
-            if user_input == 'exit':
-                break
-            output = 'output: did something with input:'+user_input
-            client_connection.send(
-                str(
-                    {'action': 'OUTPUT', 'payload': {'message': output}}
-                    ).encode())
-        # OUTPUT ACTION
-        elif data['action'] == 'OUTPUT' and user_id is not None:
-            client_connection.send(
-                str(
-                    {'action': 'INPUT', 'payload': {'message': 'prefix: '}}
-                    ).encode())
+class ServerTerminal(BaseTerminal):
 
-    print('Closing Connection: ', str(client_address), 'UserID:', user_id)
-    client_connection.close()
-    if user_id is not None:
-        ACTIVE_CONNECTIONS_POOL.remove(user_id)
+    def __init__(self, connection, commands=None, prefix='finder'):
+        self.connection = connection
+        super().__init__(commands=commands, prefix=prefix)
 
+    def log(self, message, prefix=True, stdout=None):
+        if prefix:
+            message = f'{self.get_prefix} {message}'
 
-def run_server_thread(socket_):
-    while(input() != 'exit'):
-        continue
-    socket_.close()
-
-
-def server():
-    host = socket.gethostname()
-    socket_ = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    try:
-        socket_.bind((host, PORT))
-    except socket.error as e:
-        print('Error binding socket:', e)
-
-    socket_.listen()
-    Thread(target=run_server_thread, args=[socket_]).start()
-    print("Server is listening... (type 'exit' to close)")
-    while True:
         try:
-            conn, address = socket_.accept()
-        except socket.error:
-            print(
-                'Closing server after all client connections are closed...'
-                )
-            break
-        thread_ = Thread(target=client_thread, args=[conn, address])
-        thread_.start()
-        THREADS.append(thread_)
+            self.connection.send(
+                message_builder(Action.OUTPUT, message)
+            )
+        except socket.error as e:
+            print(e)
 
-    for thread in THREADS:
-        thread.join()
+    def get_input(self, prompt=None, prefix=True):
+        if prompt is not None:
+            self.log(prompt, prefix=prefix)
+
+        message = ''
+        if prefix:
+            message = self.get_prefix
+
+        try:
+            self.connection.send(
+                message_builder(Action.INPUT, message)
+            )
+        except socket.error as e:
+            print(e)
+
+
+def client_handler(conn, address):
+    """Handle individual client connection"""
+    with ClientConnection(conn) as client_connection:
+        terminal = ServerTerminal(
+            client_connection,
+            commands=DEFAULT_COMMANDS,
+        )
+
+        while True:
+            terminal.get_input()
+            message = client_connection.recv()
+
+            if client_connection.status == Status.OK:
+                messages = message_decompose(message)
+
+                for action, user_input in messages:
+                    if action == Action.INPUT:
+                        command, arguments, found, _ = terminal.match_command(
+                            user_input
+                        )
+                        terminal.sansio_run(
+                            command, arguments, found
+                        )
+            else:
+                print(f'Error receiving data from client: {address}')
+                break
+
+
+def main():
+
+    host = sys.argv[1] if len(sys.argv) == 2 else None
+
+    with Server(host) as server:
+        if server.status == Status.OK:
+            while True:
+                conn, address = server.accept()
+
+                if server.status == Status.OK:
+                    server.hand_off(conn, address, client_handler)
+                else:
+                    print('Error accepting new connection')
+                    break
+        else:
+            print('Could not bind server')
 
 
 if __name__ == '__main__':
-    server()
+    main()
