@@ -24,7 +24,7 @@ class ServerTerminal(BaseTerminal):
         except socket.error as e:
             print(e)
 
-    def get_input(self, prompt=None, prefix=True):
+    def get_input(self, prompt=None, prefix=True, wait=True):
         if prompt is not None:
             self.log(prompt, prefix=prefix)
 
@@ -36,6 +36,11 @@ class ServerTerminal(BaseTerminal):
             self.connection.send(
                 message_builder(Action.INPUT, message)
             )
+            if wait:
+                action, user_input = message_decompose(
+                    self.connection.recv()
+                )[0]
+                return user_input
         except socket.error as e:
             print(e)
 
@@ -49,7 +54,7 @@ def client_handler(conn, address):
         )
 
         while True:
-            terminal.get_input()
+            terminal.get_input(wait=False)
             message = client_connection.recv()
 
             if client_connection.status == Status.OK:

@@ -19,7 +19,9 @@ def main():
 
                     for action, message in messages:
                         if action == Action.INPUT:
-                            user_input = input(f'{client.username}@{message} ')
+                            prompt = f'{client.username}@{message} ' \
+                                if message else ''
+                            user_input = input(prompt)
                             client.send(message_builder(
                                 Action.INPUT, user_input
                             ))
