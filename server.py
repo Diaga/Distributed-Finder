@@ -73,11 +73,13 @@ def main():
     host = sys.argv[1] if len(sys.argv) == 2 else None
 
     with Server(host) as server:
+        print('Serving clients...')
         if server.status == Status.OK:
             while True:
                 conn, address = server.accept()
 
                 if server.status == Status.OK:
+                    print('Client connection accepted from: ', address)
                     server.hand_off(conn, address, client_handler)
                 else:
                     print('Error accepting new connection')
