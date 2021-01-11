@@ -1,5 +1,6 @@
 import sys
 import socket
+import threading
 
 from main import DEFAULT_COMMANDS
 from base.terminal import BaseTerminal
@@ -69,8 +70,25 @@ def client_handler(conn, address):
                             command, arguments, found
                         )
             else:
-                print(f'Error receiving data from client: {address}')
                 break
+
+
+def server_handler(server):
+    """Handle incoming connections for server
+
+    :param: server: Server connection"""
+    try:
+        while True:
+            conn, address = server.accept()
+
+            if server.status == Status.OK:
+                print('Client connection accepted from: ', address)
+                server.hand_off(conn, address, client_handler)
+            else:
+                print('Error accepting new connection')
+                break
+    except TypeError:
+        pass
 
 
 def main():
@@ -80,15 +98,14 @@ def main():
     with Server(host) as server:
         print('Serving clients...')
         if server.status == Status.OK:
-            while True:
-                conn, address = server.accept()
-
-                if server.status == Status.OK:
-                    print('Client connection accepted from: ', address)
-                    server.hand_off(conn, address, client_handler)
-                else:
-                    print('Error accepting new connection')
-                    break
+            try:
+                server_thread = threading.Thread(
+                    target=server_handler, args=[server]
+                )
+                server_thread.start()
+                server_thread.join()
+            except KeyboardInterrupt:
+                print('\nExiting server after cleaning up...')
         else:
             print('Could not bind server')
 

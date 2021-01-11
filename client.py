@@ -11,25 +11,28 @@ def main():
 
     with Client(username=username, address=address) as client:
         if client.status == Status.OK:
-            while True:
-                msg = client.recv()
+            try:
+                while True:
+                    msg = client.recv()
 
-                if client.status == Status.OK:
-                    messages = message_decompose(msg)
+                    if client.status == Status.OK:
+                        messages = message_decompose(msg)
 
-                    for action, message in messages:
-                        if action == Action.INPUT:
-                            prompt = f'{client.username}@{message} ' \
-                                if message else ''
-                            user_input = input(prompt)
-                            client.send(message_builder(
-                                Action.INPUT, user_input
-                            ))
-                        elif action == Action.OUTPUT:
-                            print(message)
-                else:
-                    print('Error receiving data from server: ', msg)
-                    break
+                        for action, message in messages:
+                            if action == Action.INPUT:
+                                prompt = f'{client.username}@{message} ' \
+                                    if message else ''
+                                user_input = input(prompt)
+                                client.send(message_builder(
+                                    Action.INPUT, user_input
+                                ))
+                            elif action == Action.OUTPUT:
+                                print(message)
+                    else:
+                        print('Error receiving data from server: ', msg)
+                        break
+            except KeyboardInterrupt:
+                print('\nExiting client after cleaning up...')
 
         else:
             print('Could not establish connection')
