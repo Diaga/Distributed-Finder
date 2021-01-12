@@ -22,7 +22,7 @@ copyright = '2020, Maaz Bin Tahir, Eesha Arif, Syed Baber Tameez'
 author = 'Maaz Bin Tahir, Eesha Arif, Syed Baber Tameez'
 
 # The full version, including alpha/beta/rc tags
-release = 'Lab 9'
+release = 'Lab 11'
 
 
 # -- General configuration ---------------------------------------------------
