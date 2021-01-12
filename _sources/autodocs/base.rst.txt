@@ -36,6 +36,15 @@ base.terminal module
    :undoc-members:
    :show-inheritance:
 
+base.connection module
+--------------------
+
+.. automodule:: base.connection
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+
 Module contents
 ---------------
 

@@ -272,6 +272,171 @@ directory</p>
 </dd></dl>
 
 </div>
+<div class="section" id="base-connection-module">
+<h2>base.connection module<a class="headerlink" href="#base-connection-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-base.connection"></span><dl class="py class">
+<dt id="base.connection.Action">
+<em class="property">class </em><code class="sig-prename descclassname">base.connection.</code><code class="sig-name descname">Action</code><a class="headerlink" href="#base.connection.Action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="base.connection.Action.INPUT">
+<code class="sig-name descname">INPUT</code><em class="property"> = 'INPUT'</em><a class="headerlink" href="#base.connection.Action.INPUT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.connection.Action.OUTPUT">
+<code class="sig-name descname">OUTPUT</code><em class="property"> = 'OUTPUT'</em><a class="headerlink" href="#base.connection.Action.OUTPUT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="base.connection.Client">
+<em class="property">class </em><code class="sig-prename descclassname">base.connection.</code><code class="sig-name descname">Client</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">username</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">address</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.Client" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="base.connection.Client.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.Client.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the connection from server</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.connection.Client.connect">
+<code class="sig-name descname">connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.Client.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connects to Distributed Finder server at specified address</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.connection.Client.recv">
+<code class="sig-name descname">recv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.Client.recv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive message from server</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.connection.Client.send">
+<code class="sig-name descname">send</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.Client.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send message to server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>message: Message to send</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="base.connection.ClientConnection">
+<em class="property">class </em><code class="sig-prename descclassname">base.connection.</code><code class="sig-name descname">ClientConnection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">connection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.ClientConnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="base.connection.ClientConnection.recv">
+<code class="sig-name descname">recv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.ClientConnection.recv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive message from client</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.connection.ClientConnection.send">
+<code class="sig-name descname">send</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.ClientConnection.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send message to client</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>message: Message to send</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="base.connection.Server">
+<em class="property">class </em><code class="sig-prename descclassname">base.connection.</code><code class="sig-name descname">Server</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.Server" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="base.connection.Server.accept">
+<code class="sig-name descname">accept</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.Server.accept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accepts a new connection</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.connection.Server.hand_off">
+<code class="sig-name descname">hand_off</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conn</span></em>, <em class="sig-param"><span class="n">address</span></em>, <em class="sig-param"><span class="n">handler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.Server.hand_off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs hand off to a new thread</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="base.connection.Server.serve">
+<code class="sig-name descname">serve</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.Server.serve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Binds the port and starts listening</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="base.connection.Status">
+<em class="property">class </em><code class="sig-prename descclassname">base.connection.</code><code class="sig-name descname">Status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.Status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt id="base.connection.Status.ERROR">
+<code class="sig-name descname">ERROR</code><em class="property"> = 3</em><a class="headerlink" href="#base.connection.Status.ERROR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.connection.Status.OK">
+<code class="sig-name descname">OK</code><em class="property"> = 2</em><a class="headerlink" href="#base.connection.Status.OK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="base.connection.Status.UNSET">
+<code class="sig-name descname">UNSET</code><em class="property"> = 1</em><a class="headerlink" href="#base.connection.Status.UNSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="base.connection.message_builder">
+<code class="sig-prename descclassname">base.connection.</code><code class="sig-name descname">message_builder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">action</span></em>, <em class="sig-param"><span class="n">message</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.message_builder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds message to send</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>action: Protocol action</p>
+</dd>
+<dt class="field-even">Param</dt>
+<dd class="field-even"><p>message: Protocol message</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="base.connection.message_decode">
+<code class="sig-prename descclassname">base.connection.</code><code class="sig-name descname">message_decode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">messages</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.message_decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes message received from server back to json</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>message: Message to decode</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="base.connection.message_decompose">
+<code class="sig-prename descclassname">base.connection.</code><code class="sig-name descname">message_decompose</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">messages</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.message_decompose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decomposes message to a tuple of action, message</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="base.connection.message_encode">
+<code class="sig-prename descclassname">base.connection.</code><code class="sig-name descname">message_encode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#base.connection.message_encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encodes json message to be sent to server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>message: Message to encode</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
 <div class="section" id="module-base">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-base" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -297,6 +462,7 @@ directory</p>
 <li><a class="reference internal" href="#module-base.command">base.command module</a></li>
 <li><a class="reference internal" href="#module-base.option">base.option module</a></li>
 <li><a class="reference internal" href="#module-base.terminal">base.terminal module</a></li>
+<li><a class="reference internal" href="#base-connection-module">base.connection module</a></li>
 <li><a class="reference internal" href="#module-base">Module contents</a></li>
 </ul>
 </li>
