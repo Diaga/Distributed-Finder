@@ -1,15 +1,49 @@
+from db.db import DB
 from db.dao.directory_dao import DirectoryDao
 from db.models.directory import Directory
 from db.base import SECTOR_SIZE
 from db.dao.sector_dao import SectorDao
-from db.db import DB
 from db.models.file import File
 from math import ceil
 import re
+from threading import Lock
 
 
 class FileDao:
     """Data access object for File model"""
+    POOL = []
+
+    @staticmethod
+    def write_lock_of_file(file):
+        accessed_file = next(
+            (item for item in FileDao.POOL if item['id'] == file),
+            None
+        )
+        if (accessed_file is None):
+            mutex = Lock()
+            FileDao.POOL.append({
+                'id': file,
+                'mutex': mutex
+            })
+            return mutex
+        return accessed_file['mutex']
+
+    @staticmethod
+    def write_unlock_of_file(file):
+        accessed_file = next(
+            item for item in FileDao.POOL if item['id'] == file
+        )
+        mutex: Lock = accessed_file['mutex']
+        FileDao.POOL.remove(accessed_file)
+        return mutex
+
+    @staticmethod
+    def read_lock_of_file(file):
+        accessed_file = next(
+            (item for item in FileDao.POOL if item['id'] == file), None)
+        if (accessed_file is None):
+            return None
+        return accessed_file['mutex']
 
     @staticmethod
     def create_file(file, commit=True):
@@ -31,6 +65,7 @@ class FileDao:
         :param data: The data to insert
         :param order: The preceding order number
         """
+        FileDao.write_lock_of_file(file).acquire()
         divs = []
         for cap in range(0, len(data), SECTOR_SIZE):
             divs.append(data[cap: cap + SECTOR_SIZE])
@@ -46,6 +81,7 @@ class FileDao:
             sector = SectorDao.get_first_unused_sector()
             SectorDao.insert_sector_data(
                 sector, data=div, order=order, file_id=file.id)
+        FileDao.write_unlock_of_file(file).release()
         return order
 
     @staticmethod
@@ -56,12 +92,14 @@ class FileDao:
         :param commit: Specifies whether to commit
         to database
         """
+        FileDao.write_lock_of_file(file).acquire()
         for sector in file.sectors:
             sector.data = None
             sector.order = 0
             sector.file_id = None
         if commit:
             DB().session.commit()
+        FileDao.write_unlock_of_file(file).release()
 
     @staticmethod
     def delete_file(file, commit=True):
@@ -69,6 +107,7 @@ class FileDao:
         :param file: File model object to be deleted
         :param commit: Specifies whether to commit to database
         """
+
         FileDao.remove_data_in_file(file)
         DB().session.delete(file)
         if commit:
@@ -158,6 +197,9 @@ class FileDao:
 
     @staticmethod
     def read_from_file(file, index=0, size=None):
+        mutex: Lock = FileDao.read_lock_of_file(file)
+        if mutex is not None:
+            mutex.acquire()
         if file.is_empty:
             raise ValueError('File is empty! No contents to show')
         file_size = FileDao.get_file_size(file)
@@ -200,5 +242,6 @@ class FileDao:
             while count < len(end_sectors):
                 content += end_sectors[count].data
                 count += 1
-
+        if mutex is not None:
+            mutex.release()
         return content[:size]
