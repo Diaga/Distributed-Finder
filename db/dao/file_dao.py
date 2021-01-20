@@ -6,44 +6,13 @@ from db.dao.sector_dao import SectorDao
 from db.models.file import File
 from math import ceil
 import re
-from threading import Lock
+
+from ..base import Monitor
 
 
 class FileDao:
     """Data access object for File model"""
     POOL = []
-
-    @staticmethod
-    def write_lock_of_file(file):
-        accessed_file = next(
-            (item for item in FileDao.POOL if item['id'] == file),
-            None
-        )
-        if (accessed_file is None):
-            mutex = Lock()
-            FileDao.POOL.append({
-                'id': file,
-                'mutex': mutex
-            })
-            return mutex
-        return accessed_file['mutex']
-
-    @staticmethod
-    def write_unlock_of_file(file):
-        accessed_file = next(
-            item for item in FileDao.POOL if item['id'] == file
-        )
-        mutex: Lock = accessed_file['mutex']
-        FileDao.POOL.remove(accessed_file)
-        return mutex
-
-    @staticmethod
-    def read_lock_of_file(file):
-        accessed_file = next(
-            (item for item in FileDao.POOL if item['id'] == file), None)
-        if (accessed_file is None):
-            return None
-        return accessed_file['mutex']
 
     @staticmethod
     def create_file(file, commit=True):
@@ -65,24 +34,24 @@ class FileDao:
         :param data: The data to insert
         :param order: The preceding order number
         """
-        FileDao.write_lock_of_file(file).acquire()
-        divs = []
-        for cap in range(0, len(data), SECTOR_SIZE):
-            divs.append(data[cap: cap + SECTOR_SIZE])
-        if order is None:
-            order = FileDao.get_highest_order_of_sectors(file)
-        for div in divs:
-            if SectorDao.is_memory_full():
-                raise MemoryError(
-                    'Memory is full! ' +
-                    'All available sectors used up!')
+        with Monitor(file.id):
+            divs = []
+            for cap in range(0, len(data), SECTOR_SIZE):
+                divs.append(data[cap: cap + SECTOR_SIZE])
+            if order is None:
+                order = FileDao.get_highest_order_of_sectors(file)
+            for div in divs:
+                if SectorDao.is_memory_full():
+                    raise MemoryError(
+                        'Memory is full! ' +
+                        'All available sectors used up!')
 
-            order += 1
-            sector = SectorDao.get_first_unused_sector()
-            SectorDao.insert_sector_data(
-                sector, data=div, order=order, file_id=file.id)
-        FileDao.write_unlock_of_file(file).release()
-        return order
+                order += 1
+                sector = SectorDao.get_first_unused_sector()
+                SectorDao.insert_sector_data(
+                    sector, data=div, order=order, file_id=file.id)
+
+            return order
 
     @staticmethod
     def remove_data_in_file(file, commit=True):
@@ -92,14 +61,13 @@ class FileDao:
         :param commit: Specifies whether to commit
         to database
         """
-        FileDao.write_lock_of_file(file).acquire()
-        for sector in file.sectors:
-            sector.data = None
-            sector.order = 0
-            sector.file_id = None
-        if commit:
-            DB().session.commit()
-        FileDao.write_unlock_of_file(file).release()
+        with Monitor(file.id):
+            for sector in file.sectors:
+                sector.data = None
+                sector.order = 0
+                sector.file_id = None
+            if commit:
+                DB().session.commit()
 
     @staticmethod
     def delete_file(file, commit=True):
@@ -172,7 +140,7 @@ class FileDao:
         path = str(current)
         root = DirectoryDao.get_root_directory()
         restore = current
-        while (current != root):
+        while current != root:
             parent = current.directory
             str_parent = str(parent)
             path = str_parent+'/'+path
@@ -197,51 +165,47 @@ class FileDao:
 
     @staticmethod
     def read_from_file(file, index=0, size=None):
-        mutex: Lock = FileDao.read_lock_of_file(file)
-        if mutex is not None:
-            mutex.acquire()
-        if file.is_empty:
-            raise ValueError('File is empty! No contents to show')
-        file_size = FileDao.get_file_size(file)
-        if size is None:
-            size = file_size
+        with Monitor(file.id, mode='r'):
+            if file.is_empty:
+                raise ValueError('File is empty! No contents to show')
+            file_size = FileDao.get_file_size(file)
+            if size is None:
+                size = file_size
 
-        if index == 0:
-            content = ''
-            file_sectors = file.sectors
-            file_sectors.sort(key=lambda sector: sector.order)
-            content = ''
-            for sector in file_sectors:
-                content += sector.data
-        else:
-            if (index >= file_size):
-                raise ValueError(
-                    'Index larger than content in file!')
-            # The sector from which data is to be read
-            start_read_sector_order = ceil((index + 1) / SECTOR_SIZE)
-            start_read_sector = [
-                sector for sector in
-                file.sectors if sector.order == start_read_sector_order][0]
+            if index == 0:
+                file_sectors = file.sectors
+                file_sectors.sort(key=lambda sector: sector.order)
+                content = ''
+                for sector in file_sectors:
+                    content += sector.data
+            else:
+                if index >= file_size:
+                    raise ValueError(
+                        'Index larger than content in file!')
+                # The sector from which data is to be read
+                start_read_sector_order = ceil((index + 1) / SECTOR_SIZE)
+                start_read_sector = [
+                    sector for sector in
+                    file.sectors if sector.order == start_read_sector_order][0]
 
-            # The remaining sectors to be read
-            end_sectors = [
-                sector for sector in file.sectors
-                if sector.order > start_read_sector_order
-            ]
+                # The remaining sectors to be read
+                end_sectors = [
+                    sector for sector in file.sectors
+                    if sector.order > start_read_sector_order
+                ]
 
-            # Sorting the remaining sectors by order
-            end_sectors.sort(key=lambda sector: sector.order)
+                # Sorting the remaining sectors by order
+                end_sectors.sort(key=lambda sector: sector.order)
 
-            # Read content of the sector from the specified index
-            start_read_sector_data = start_read_sector.data
-            start_index = index % SECTOR_SIZE
-            content = start_read_sector_data[start_index:]
+                # Read content of the sector from the specified index
+                start_read_sector_data = start_read_sector.data
+                start_index = index % SECTOR_SIZE
+                content = start_read_sector_data[start_index:]
 
-            # Read the content till the size specified
-            count = 0
-            while count < len(end_sectors):
-                content += end_sectors[count].data
-                count += 1
-        if mutex is not None:
-            mutex.release()
-        return content[:size]
+                # Read the content till the size specified
+                count = 0
+                while count < len(end_sectors):
+                    content += end_sectors[count].data
+                    count += 1
+
+            return content[:size]
