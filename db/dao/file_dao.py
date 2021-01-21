@@ -12,7 +12,6 @@ from ..base import Monitor
 
 class FileDao:
     """Data access object for File model"""
-    POOL = []
 
     @staticmethod
     def create_file(file, commit=True):
