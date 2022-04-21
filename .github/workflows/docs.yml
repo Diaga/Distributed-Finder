@@ -9,12 +9,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      PROD: true
 
     steps:
     - name: Something
       run: |
         TEST=HAHA
-        echo "TEST1=${{ true && $TEST || $HOME }}" >> $GITHUB_ENV
+        echo "TEST1=${{ true && $TEST || env.PROD == 'true' && 'production' || 'dev' }}" >> $GITHUB_ENV
     
     - name: Something 2
       run: echo ${{ env.TEST1 }}
