@@ -11,6 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Something
+      run: |
+        TEST=HAHA
+        echo "TEST1=${{ $TEST }}" >> $GITHUB_ENV
+    
+    - name: Something 2
+      run: echo ${{ env.TEST1 }}
+      
     - uses: actions/checkout@v1
     # Standard drop-in approach that should work for most people.
     - uses: ammaraskar/sphinx-action@master
