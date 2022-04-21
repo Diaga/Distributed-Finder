@@ -16,7 +16,7 @@ jobs:
     - name: Something
       run: |
         TEST=HAHA
-        echo "TEST1=${{ true && env.PROD == 'true' && $env.PROD'/test' || 'dev' || 'haha' }}" >> $GITHUB_ENV
+        echo "TEST1=${{ true && env.PROD == 'true' && format('{0}/test', $env.PROD) || 'dev' || 'haha' }}" >> $GITHUB_ENV
     
     - name: Something 2
       run: echo ${{ env.TEST1 }}
