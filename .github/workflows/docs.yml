@@ -10,13 +10,13 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      PROD: true
+      PROD: tru
 
     steps:
     - name: Something
       run: |
         TEST=HAHA
-        echo "TEST1=${{ true && env.PROD == 'true' && 'production' || 'dev' || 'haha' }}" >> $GITHUB_ENV
+        echo "TEST1=${{ true && env.PROD'e' == 'true' && $env.PROD'/test' || 'dev' || 'haha' }}" >> $GITHUB_ENV
     
     - name: Something 2
       run: echo ${{ env.TEST1 }}
