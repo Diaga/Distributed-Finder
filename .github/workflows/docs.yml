@@ -1,6 +1,12 @@
 name: docs
 
 on:
+  workflow_dispatch:
+    inputs:
+      test_input:
+        description: testing this input
+        required: true
+        default: 'test'
   push:
     branches:
       - master
@@ -17,7 +23,9 @@ jobs:
       run: |
         TEST=HAHA
         echo "TEST1=${{ true && env.PROD == 'true' && format('{0}/test', env.PROD) || 'dev' || 'haha' }}" >> $GITHUB_ENV
-    
+   
+    - name: something test
+      run: echo "${{ inputs.test_input }}"
     - name: Something 2
       run: echo ${{ env.TEST1 }}
       
