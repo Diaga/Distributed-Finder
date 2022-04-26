@@ -25,7 +25,7 @@ jobs:
         echo "TEST1=${{ true && env.PROD == 'true' && format('{0}/test', env.PROD) || 'dev' || 'haha' }}" >> $GITHUB_ENV
    
     - name: something test
-      run: echo "${{ github.event.inputs.test_input }}"
+      run: echo "${{ github.event.inputs.test_input != '' && github.event.inputs.test_input || 'default' }}"
     - name: Something 2
       run: echo ${{ env.TEST1 }}
       
